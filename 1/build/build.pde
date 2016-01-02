@@ -4,11 +4,9 @@ import hype.extended.colorist.*;
 import hype.extended.layout.*;
 import hype.interfaces.*;
 import processing.pdf.*;
-boolean record = false;
 
 HShape d;
 HColorPool colors;
-int border = 200;
 
 void setup() {
 	size(800, 800);
