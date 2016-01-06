@@ -1,3 +1,8 @@
+import hype.*;
+import hype.extended.behavior.*;
+import hype.extended.colorist.*;
+import hype.extended.layout.*;
+import hype.interfaces.*;
 import processing.pdf.*;
 boolean record = false;
 
