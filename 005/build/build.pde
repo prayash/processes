@@ -1,3 +1,6 @@
+// Processes - Day 5
+// Prayash Thapa - January 5, 2016
+
 import hype.*;
 import hype.extended.behavior.*;
 import hype.extended.colorist.*;
@@ -9,19 +12,19 @@ boolean record = false;
 boolean paused = true;
 HDrawablePool pool;
 
+// ************************************************************************************
+
 void setup() {
 	size(700, 700);
-	H.init(this).background(#202020);
-
+	H.init(this).background(#FFFFFF);
 	HImage hitObj = new HImage("text.png");
 	H.add(hitObj).visibility(false);
-
 	HShapeLayout shapeLayout = new HShapeLayout().target(hitObj);
 	
 	pool = new HDrawablePool(4000);
 	pool.autoAddToStage()
 		.add (new HRect())
-		.colorist(new HColorPool(#2A77E8, #495DFF, #3BC4FF, #2AE8E8).fillOnly())
+		.colorist(new HColorPool(#303030,#373737,#3A3A3A,#2A77E8, #3BC4FF,#414141,#495DFF,#9D9D9D,#AAAAAA,#B8B8B8,#BFBFBF).fillOnly())
 		.layout(shapeLayout)
 		.onCreate (
 			new HCallback() {
@@ -36,13 +39,14 @@ void setup() {
 				}
 			}
 		)
-		.requestAll()
-	;
+		.requestAll();
 
 	H.drawStage();
 }
 
- void draw() {
+// ************************************************************************************
+
+void draw() {
 	PGraphics tmp = null;
 
 	if (record) {
@@ -63,6 +67,8 @@ void setup() {
 		record = false;
 	}
 }
+
+// ************************************************************************************
 
 void keyPressed() {
 	if (key == 's') {

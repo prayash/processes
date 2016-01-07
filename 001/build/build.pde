@@ -1,3 +1,6 @@
+// Processes - Day 1
+// Prayash Thapa - January 1, 2016
+
 import hype.*;
 import hype.extended.behavior.*;
 import hype.extended.colorist.*;
@@ -7,6 +10,8 @@ import processing.pdf.*;
 
 HShape d;
 HColorPool colors;
+
+// ************************************************************************************
 
 void setup() {
 	size(800, 800);
@@ -95,9 +100,13 @@ void setup() {
 	}
 }
 
+// ************************************************************************************
+
 void draw() {
 	H.drawStage();
 }
+
+// ************************************************************************************
 
 void keyPressed() {
 	if (key == 's') {

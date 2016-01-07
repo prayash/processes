@@ -1,21 +1,24 @@
+// Processes - Day 3
+// Prayash Thapa - January 3, 2016
+
 import hype.*;
 import hype.extended.behavior.*;
 import hype.extended.colorist.*;
 import hype.extended.layout.*;
 import hype.interfaces.*;
-
 import processing.pdf.*;
 boolean record = false;
-
 
 HColorPool colors;
 HDrawablePool pool;
 
+// ************************************************************************************
+
 void setup() {
 	size(800, 800);
-	H.init(this).background(#FFFFFF);
+	H.init(this).background(#de53b0);
 
-	colors = new HColorPool(#292121,#231D16,#342A5D,#161024,#2A1A3D,#41326A,#3F3062,#292243,#705DB0,#241D32,#56436C,#695587,#413855,#9B7CB8,#6B567F).fillOnly();
+	colors = new HColorPool(#D31996,#708D91,#342A5D,#19DD89,#2A1A3D,#41326A,#3F3062,#292243,#705DB0,#241D32,#56436C,#695587,#413855,#9B7CB8,#6B567F).fillOnly();
 
 	pool = new HDrawablePool((int)random(25, 35));
 	pool.autoAddToStage()
@@ -37,19 +40,20 @@ void setup() {
 						.strokeWeight(0)
 						.rotation( (int)random(180) )
 						.size( (int)random(200, 500) )
-						.loc(random(width / 2, width), random(height / 2, height))
+						.loc(random(width / 2.25, width), random(height / 2, height))
 					;
 					d.randomColors(colors);
 				}
 			}
 		)
-		.requestAll()
-	;
+		.requestAll();
 
 	H.drawStage();
 	noLoop();
 
 }
+
+// ************************************************************************************
 
 void draw() {
 	PGraphics tmp = null;
@@ -72,6 +76,8 @@ void draw() {
 		record = false;
 	}
 }
+
+// ************************************************************************************
 
 void keyPressed() {
 	if (key == 's') {

@@ -1,3 +1,6 @@
+// Processes - Day 4
+// Prayash Thapa - January 4, 2016
+
 import hype.*;
 import hype.extended.behavior.*;
 import hype.extended.colorist.*;
@@ -10,7 +13,9 @@ HDrawablePool pool;
 HColorPool colors;
 HShape s1;
 
-void setup(){
+// ************************************************************************************
+
+void setup() {
 	size(700, 700);
 	H.init(this).background(#FFFFFF);
 
@@ -23,9 +28,7 @@ void setup(){
 	pool = new HDrawablePool(150);
 	pool.autoAddToStage()
 		.add(new HShape("diamond.svg"))
-
 		.layout(s1)
-
 		.onCreate(
 			new HCallback() {
 				public void run(Object obj) {
@@ -40,19 +43,15 @@ void setup(){
 						.rotate(135)
 						.size( (int)random(5) * 50 )
 					;
-					// d.randomColors(colors.fillOnly());
 				}
 			}
 		)
-		.requestAll()
-	;
+		.requestAll();
 
 	pool = new HDrawablePool(50);
 	pool.autoAddToStage()
 		.add(new HShape("diamond.svg"))
-
 		.layout(s1)
-
 		.onCreate(
 			new HCallback() {
 				public void run(Object obj) {
@@ -65,25 +64,22 @@ void setup(){
 						.fill(colors.getColor(), 200)
 						.anchorAt(H.CENTER)
 						.rotate(135)
-						.size( (int)random(5) * 100 ) // 50, 100, 150, 200
+						.size( (int)random(5) * 100 )
 					;
-					// d.randomColors(colors.fillOnly());
 				}
 			}
 		)
-		.requestAll()
-	;
-
+		.requestAll();
 
 	H.drawStage();
 }
- 
- void draw() {
+
+// ************************************************************************************
+
+void draw() {
 	PGraphics tmp = null;
 
-	if (record) {
-		tmp = beginRecord(PDF, "render-######.pdf");
-	}
+	if (record) tmp = beginRecord(PDF, "render-######.pdf");
 
 	if (tmp == null) {
 		H.drawStage();
@@ -99,6 +95,8 @@ void setup(){
 		record = false;
 	}
 }
+
+// ************************************************************************************
 
 void keyPressed() {
 	if (key == 's') {
