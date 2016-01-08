@@ -16,22 +16,16 @@ HDrawablePool pool;
 
 void setup() {
 	size(800, 800);
-	H.init(this).background(#de53b0);
+	H.init(this).background(#FFFFFF);
 
 	colors = new HColorPool(#D31996,#708D91,#342A5D,#19DD89,#2A1A3D,#41326A,#3F3062,#292243,#705DB0,#241D32,#56436C,#695587,#413855,#9B7CB8,#6B567F).fillOnly();
 
-	pool = new HDrawablePool((int)random(25, 35));
+	pool = new HDrawablePool((int)random(25, 55));
 	pool.autoAddToStage()
-		.add (new HShape("svg4.svg").strokeJoin(ROUND).strokeCap(ROUND).anchorAt(H.CENTER))
-		.add (new HShape("svg5.svg").strokeJoin(ROUND).strokeCap(ROUND).anchorAt(H.CENTER))
-		.add (new HShape("svg6.svg").strokeJoin(ROUND).strokeCap(ROUND).anchorAt(H.CENTER))
-		.add (new HShape("svg7.svg").strokeJoin(ROUND).strokeCap(ROUND).anchorAt(H.CENTER))
-		.add (new HShape("svg8.svg").strokeJoin(ROUND).strokeCap(ROUND).anchorAt(H.CENTER))
 		.add (new HShape("svg3.svg").strokeJoin(ROUND).strokeCap(ROUND).anchorAt(H.CENTER))
+		.add (new HShape("svg4.svg").strokeJoin(ROUND).strokeCap(ROUND).anchorAt(H.CENTER))
+		.add (new HShape("svg2.svg").strokeJoin(ROUND).strokeCap(ROUND).anchorAt(H.CENTER), 20)
 		.add (new HShape("svg1.svg").strokeJoin(ROUND).strokeCap(ROUND).anchorAt(H.CENTER))
-		.add (new HShape("svg2.svg").strokeJoin(ROUND).strokeCap(ROUND).anchorAt(H.CENTER))
-
-
 		.onCreate (
 			new HCallback() {
 				public void run(Object obj) {
