@@ -3,34 +3,37 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="100px" height="100px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
-<path d="M17.688,100.023l0.092-0.092L17.688,100.023z"/>
-<path d="M82.626,0.303l0.292-0.292L82.626,0.303z"/>
+<path d="M37.982,100.006l0.092-0.092L37.982,100.006z"/>
+<path d="M102.92,0.286l0.292-0.292L102.92,0.286z"/>
 <g>
-	<rect x="11.785" y="39.525" fill="#333333" width="9.569" height="0.329"/>
-	<rect x="11.785" y="40.178" fill="#333333" width="9.569" height="0.33"/>
-	<rect x="11.785" y="40.83" fill="#333333" width="9.569" height="0.331"/>
-	<rect x="11.785" y="41.483" fill="#333333" width="9.569" height="0.331"/>
-	<rect x="11.785" y="42.136" fill="#333333" width="9.569" height="0.331"/>
+	
+		<rect x="60.154" y="41.748" transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 151.5741 21.4829)" fill="#333333" width="22.367" height="0.769"/>
+	
+		<rect x="61.235" y="42.826" transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 154.1818 22.5573)" fill="#333333" width="22.367" height="0.772"/>
+	
+		<rect x="62.313" y="43.905" transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 156.7867 23.6418)" fill="#333333" width="22.367" height="0.774"/>
+	
+		<rect x="63.393" y="44.985" transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 159.3911 24.7174)" fill="#333333" width="22.367" height="0.773"/>
+	
+		<rect x="64.471" y="46.062" transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 161.9945 25.7986)" fill="#333333" width="22.366" height="0.774"/>
 </g>
 <g>
-	<polygon fill="#666666" points="41.66,30.105 22.153,49.613 26.523,49.613 30.526,45.61 45.938,45.61 61.168,30.382 100,30.382 
-		100,30.105 	"/>
-	<rect x="11.168" y="49.016" fill="#666666" width="1.26" height="5.039"/>
-	<rect x="13.651" y="49.016" fill="#666666" width="1.26" height="5.039"/>
+	<polygon fill="#666666" points="61.954,30.088 42.447,49.596 46.817,49.596 50.82,45.593 66.232,45.593 81.462,30.365 	"/>
+	<rect x="31.462" y="48.999" fill="#666666" width="1.26" height="5.038"/>
+	<rect x="33.945" y="48.999" fill="#666666" width="1.26" height="5.038"/>
 </g>
 <g>
-	<path d="M37.155,33.056c0,0-24.229,0-32.693,0l0.521,0.521h17.205l0.261-0.261h14.705L37.155,33.056L37.155,33.056z"/>
-	<polygon points="37.125,33.301 -0.2,70.626 -0.2,44.772 0.015,44.772 0.015,66.363 3.328,66.363 21.821,47.869 21.821,39.497 
-		30.685,39.497 36.971,33.209 	"/>
-	<rect x="18.202" y="51.835" width="16.932" height="0.233"/>
-	<rect x="16.055" y="53.956" width="19.079" height="0.233"/>
-	<rect x="8.683" y="49.016" width="1.261" height="5.039"/>
-	<rect x="16.136" y="49.016" width="1.26" height="5.039"/>
+	<path d="M57.449,33.039l-0.002,0.26L57.449,33.039L57.449,33.039z"/>
+	<polygon points="57.419,33.284 23.622,66.346 42.115,47.852 42.115,45.37 54.533,33.127 57.266,33.192 57.266,33.192 	"/>
+	<rect x="38.496" y="51.818" width="16.932" height="0.232"/>
+	<rect x="36.349" y="53.939" width="19.079" height="0.232"/>
+	<rect x="28.977" y="48.999" width="1.261" height="5.038"/>
+	<rect x="36.43" y="48.999" width="1.26" height="5.038"/>
 </g>
-<circle fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="43.875" cy="26" r="2.125"/>
-<circle fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="50" cy="26" r="2.125"/>
-<circle fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="87.424" cy="33.577" r="2.125"/>
-<circle fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="80.75" cy="33.577" r="2.125"/>
-<circle fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="73.75" cy="33.577" r="2.125"/>
-<circle fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="94.207" cy="33.577" r="2.125"/>
+<circle fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="64.169" cy="25.983" r="2.125"/>
+<circle fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="70.294" cy="25.983" r="2.125"/>
+<circle fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="32.603" cy="62.928" r="2.125"/>
+<circle fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="27.884" cy="67.646" r="2.125"/>
+<circle fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="22.934" cy="72.597" r="2.125"/>
+<circle fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="37.4" cy="58.131" r="2.125"/>
 </svg>

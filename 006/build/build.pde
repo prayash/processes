@@ -15,7 +15,7 @@ boolean record = false;
 // ************************************************************************************
 
 void setup() {
-	size(700, 700);
+	size(700, 350);
 	H.init(this).background(#DC5978).autoClear(true);
 	colors = new HColorPool(#ECF0F1, #7877f9, #3498DB, #ffa446);
 	
@@ -36,7 +36,7 @@ void setup() {
 						.noStroke()
 						.loc( (int)random(width), (int)random(height))
 						.size( (int)random(20, 400) )
-						.rotation( (int)random(4) * 45 )
+						.rotation( 90 )
 					;
 					d.randomColors(colors.fillOnly());
 				}
