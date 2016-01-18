@@ -34,7 +34,7 @@ class Stripe {
   boolean isVertical; color hue;
 
   Stripe() {
-    x = random(width - 0.5 * random(30, 60));
+    x = random(width) - width;
     y = random(300, height) - random(height);
     length = random(300, 600);
     breadth = random(30, 150);
@@ -47,8 +47,8 @@ class Stripe {
   void update() {
     if (isVertical) y += speed;
     if (!isVertical) x += speed;
-    if (x > width) x = random(width - 0.5 * random(30, 60));
-    if (y > height) y = -random(300, 700) - random(700);
+    if (x > width) x = random(width) - width;
+    if (y > height) y = -random(300, height) - random(height);
   }
 
   void draw() {
