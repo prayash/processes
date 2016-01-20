@@ -4,17 +4,17 @@
 // ************************************************************************************
  
 int hex = 25, colorCounter = 0;
-float radius = 250;
+float radius = 270;
  
 void setup() {
-  size(540, 540);
+  size(440, 700);
   noStroke();
 }
  
 void draw() {
   background(#FFFFFF);
   fill(255);
-  translate(width / 2, height / 2);
+  translate(width, height / 2);
 
   for (int i = 0; i < hex; i++) {
     pushMatrix();
