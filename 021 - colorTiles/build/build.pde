@@ -1,5 +1,5 @@
-// Processes - Day 11
-// Prayash Thapa - January 11, 2016
+// Processes - Day 22
+// Prayash Thapa - January 22, 2016
 
 import hype.*;
 import hype.extended.behavior.*;
@@ -8,38 +8,40 @@ import hype.extended.layout.*;
 import hype.interfaces.*;
 import processing.pdf.*;
 
-HDrawablePool boxPool;
+HDrawablePool hexPool;
 HColorPool colors;
 boolean record = false;
 
 // ************************************************************************************
 
 void setup() {
-	size(500, 500);
-	H.init(this).background(#DC5978).autoClear(true);
-	colors = new HColorPool(#ECF0F1, #7877f9, #3498DB, #ffa446);
+	size(700, 350);
+	H.init(this).background(#FFFFFF);
+	colors = new HColorPool(#1a86c7, #b71c00, #f5f428, #af3b22, #cca292, #1a86c7, #8dcde8, #f8c023);
 	
-	// Boxes
-	boxPool = new HDrawablePool(576);
-	boxPool.autoAddToStage()
-		.add (new HRect())
+	// Hexagons
+	hexPool = new HDrawablePool(225);
+	hexPool.autoAddToStage()
+		.add(new HShape("svg1.svg"))
 		.layout(
 			new HGridLayout()
-			.startX(21)
-			.startY(21)
-			.spacing(26, 26)
-			.cols(24)
+			.startX(0)
+			.startY(0)
+			.spacing(50, 50)
+			.cols(15)
 		)
 		.onCreate (
 			new HCallback() {
 				public void run(Object obj) {
-					HDrawable d = (HDrawable) obj;
+					HShape d = (HShape) obj;
 					d
+						.enableStyle(false)
+						.strokeJoin(ROUND)
+						.strokeCap(ROUND)
+						.strokeWeight(0)
 						.anchorAt(H.CENTER)
-						.noStroke()
-						.fill(colors.getColor())
-						.size( (int)random(20, 400) )
-						.rotation(45)
+						.fill(colors.getColor(), (int)random(120, 180))
+						.size(150)
 					;
 				}
 			}

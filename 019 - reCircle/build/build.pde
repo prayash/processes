@@ -2,15 +2,15 @@
 // Prayash Thapa - January 19, 2016
 
 // ************************************************************************************
- 
+
 int hex = 25, colorCounter = 0;
 float radius = 270;
- 
+
 void setup() {
   size(440, 700);
   noStroke();
 }
- 
+
 void draw() {
   background(#FFFFFF);
   fill(255);
