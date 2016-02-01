@@ -37,7 +37,7 @@ void draw() {
 	 	float[] mesh = new float[degrees];
 	  beginShape();
 		  for (int j = 0; j < degrees; j++) {
-		  	mesh[j] = lerp(radii[numCircle][j] * -1, radii[numCircle + 1][j] * -0.05, currentTween / totalTweens);
+		  	mesh[j] = lerp(radii[numCircle][j] * 1, radii[numCircle + 1][j] * -0.55, currentTween / totalTweens);
 		    float x = sin(radians(j)) * mesh[j] * 2;
 		    float y = cos(radians(j)) * mesh[j];
 		    vertex(x, y);
