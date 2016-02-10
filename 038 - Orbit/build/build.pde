@@ -57,6 +57,7 @@ class Orbit {
       strokeWeight(1);
       stroke(strokeCol, random(20) + 50);
       line(x, y, lastX, lastY);
+      // This could be so fucking cool if I mapped the lines to stray off-path according to audio!
 
 
       // Texturing

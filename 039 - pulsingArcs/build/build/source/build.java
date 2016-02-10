@@ -17,19 +17,14 @@ public class build extends PApplet {
 // Processes - Day 39
 // Prayash Thapa - February 9, 2016
 
-// ************************************************************************************
+float theta = 0.0f;
 
-float a = random(4000.0f, 6000.0f);
-float b = random(4000.0f, 6000.0f);
-float c = random(4000.0f, 6000.0f);
-float a1 = random(-2, 1);
-float b1 = random(-2, 1);
-float c1 = random(-2, 1);
-float xoff = 0.0f;
+// ************************************************************************************
 
 public void setup() {
   background(255);
   
+  frameRate(15);
 }
 
 // ************************************************************************************
@@ -37,22 +32,20 @@ public void setup() {
 public void draw() {
   background(255);
   noStroke();
-  xoff += .01f;
-  float n = noise(xoff) * 385;
-
+  float n = sin(theta) * 385;
   translate(width/2, height/2);
-  // rotate(millis()/a);
-  fill(255, 0, 0, 100);
-  arc(0, 0, 400, 400, a1, HALF_PI);
-  // rotate(millis()/b);
-  // fill(0, 255, 0, 100);
-  // arc(0, 0, 400, 400, b1, HALF_PI);
-  // rotate(millis()/c);
-  // fill(0, 0, 255, 100);
-  // arc(0, 0, 400, 400, c1, HALF_PI);
+
+  for (int i = 0; i < 5; i++) {
+    rotate(millis() / random(4000.0f, 6000.0f));
+    fill(random(255), random(255), random(255), 100);
+    arc(0, 0, 400, 400, random(-2, 1), HALF_PI);
+  }
 
   fill(255);
-  // ellipse(0, 0, n, n);
+  ellipse(0, 0, n, n);
+  theta += .1f;
+
+  if (frameCount % 2 == 0 && frameCount < 60) saveFrame("image-####.gif");
 }
 
 // ************************************************************************************
