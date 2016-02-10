@@ -24,16 +24,16 @@ public void setup() {
 }
 
 public void draw() {
-  fill(0, 5);
+  fill(0xff55acee, 5);
   noStroke();
   rect(0, 0, width, height);
 
   stroke(255, 50);
   for (int i = 0; i <= width; i += 100) {
-    line(i, height, mouseX, mouseY);
-    line(width, i, mouseX, mouseY);
-    line(i, 0, mouseX, mouseY);
-    line(0, i, mouseX, mouseY);
+    line(i, random(height), mouseX, mouseY);
+    line(random(width), i, mouseX, mouseY);
+    line(i, random(height), mouseX, mouseY);
+    line(random(width), i, mouseX, mouseY);
   }
 }
 
@@ -42,7 +42,7 @@ public void draw() {
 public void keyReleased() {
   if (key == 's') saveFrame("_##.png");
 }
-  public void settings() {  size(500, 500); }
+  public void settings() {  size(500, 250); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "build" };
     if (passedArgs != null) {
