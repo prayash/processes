@@ -82,6 +82,7 @@ class Orbit {
         line(x, y, random(width), random(height));
       }
 
+      // Arbitrary Ellipticals
       if (random(1) > 0.85f) ellipse(x, y, 5, 5);
     }
 
