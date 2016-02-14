@@ -1,5 +1,5 @@
-// Processes - Day 41
-// Prayash Thapa - February 10, 2016
+// Processes - Day 43
+// Prayash Thapa - February 12, 2016
 
 import hype.*;
 import hype.extended.behavior.*;
@@ -10,38 +10,63 @@ import processing.pdf.*;
 
 boolean record = false;
 boolean paused = true;
-HDrawablePool pool;
+HDrawablePool pool, circuitPool;
+HColorPool colors;
 
 // ************************************************************************************
 
 void setup() {
 	size(700, 700);
-	H.init(this).background(#1C1C1C);
-	HImage hitObj = new HImage("enso.png");
+	H.init(this).background(#FFFFFF);
+	HImage hitObj = new HImage("hex.png");
 	H.add(hitObj).visibility(false);
 	HShapeLayout shapeLayout = new HShapeLayout().target(hitObj);
 
-	pool = new HDrawablePool(5200);
+	colors = new HColorPool(#1a86c7, #b71c00, #f5f428, #af3b22, #cca292, #1a86c7, #8dcde8, #f8c023);
+
+	pool = new HDrawablePool(500);
 	pool.autoAddToStage()
-		.add(new HShape("svg1.svg"))
-		.colorist(new HColorPool(0xFF).fillOnly())
+		.add (new HRect())
+		.colorist(new HColorPool(#1a86c7, #b71c00, #f5f428, #af3b22, #cca292, #1a86c7, #8dcde8, #f8c023).fillOnly())
+		.layout(shapeLayout)
+		.onCreate (
+			new HCallback() {
+				public void run(Object obj) {
+					HDrawable d = (HDrawable) obj;
+					d
+						.noStroke()
+						.size( (int)random(1, 12) )
+						.anchorAt(H.CENTER)
+						.rotation(45)
+					;
+				}
+			}
+		)
+		.requestAll();
+
+	// Circuits
+	circuitPool = new HDrawablePool(25);
+	circuitPool.autoAddToStage()
+		.add (new HShape("svg1.svg"))
+		.add (new HShape("svg2.svg"))
+		.add (new HShape("svg4.svg"))
 		.layout(shapeLayout)
 		.onCreate (
 			new HCallback() {
 				public void run(Object obj) {
 					HShape d = (HShape) obj;
 					d
-						.enableStyle(false)
-						.noStroke()
-						.strokeJoin(ROUND)
-						.strokeCap(ROUND)
-						.size( (int)random(1, 50) )
 						.anchorAt(H.CENTER)
+						.noStroke()
+						.size( (int)random(20, 400) )
+						.rotation( 90 )
 					;
+					d.randomColors(colors.fillOnly());
 				}
 			}
 		)
-		.requestAll();
+
+	.requestAll();
 
 	H.drawStage();
 }
