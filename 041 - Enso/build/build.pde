@@ -1,92 +1,80 @@
-// Processes - Day 41
-// Prayash Thapa - February 10, 2016
+// Processes - Day 34
+// Prayash Thapa - February 3, 2016
+
+import hype.*;
+import hype.extended.behavior.*;
+import hype.extended.colorist.*;
+import hype.extended.layout.*;
+import hype.interfaces.*;
+import processing.pdf.*;
+
+boolean record = false;
+boolean paused = true;
+HDrawablePool pool;
 
 // ************************************************************************************
-
-int NVERTS = 6;
-
-float vertX1[] = new float[NVERTS];
-float vertY1[] = new float[NVERTS];
-float vertX2[] = new float[NVERTS];
-float vertY2[] = new float[NVERTS];
-
-float vertX[] = new float[NVERTS];
-float vertY[] = new float[NVERTS];
-
-int yRand = 1000;
-float sizeRand;
-int count = 0;
-int countRate = (int)random(0, 50);
-
-PGraphics multigonImg, backdropImg;
 
 void setup() {
-  size(800, 800);
-  multigonImg = createGraphics(width, height);
-  backdropImg = createGraphics(width, height);
-  resetMultigon();
-}
+	size(700, 700);
+	H.init(this).background(#1C1C1C);
+	HImage hitObj = new HImage("enso.png");
+	H.add(hitObj).visibility(false);
+	HShapeLayout shapeLayout = new HShapeLayout().target(hitObj);
 
-void draw() {
-  // drawMultigon(multigonImg);
-  drawBackdrop(backdropImg);
-  image(backdropImg, 0, 0);
-  // blend(multigonImg, 0, 0, width, height, 0, 0, width, height, LIGHTEST);
-}
+	pool = new HDrawablePool(5200);
+	pool.autoAddToStage()
+		.add(new HShape("svg1.svg"))
+		.colorist(new HColorPool(0xFF).fillOnly())
+		.layout(shapeLayout)
+		.onCreate (
+			new HCallback() {
+				public void run(Object obj) {
+					HShape d = (HShape) obj;
+					d
+						.enableStyle(false)
+						.noStroke()
+						.strokeJoin(ROUND)
+						.strokeCap(ROUND)
+						.size( (int)random(1, 50) )
+						.anchorAt(H.CENTER)
+					;
+				}
+			}
+		)
+		.requestAll();
 
-void resetMultigon() {
-  for (int i = 0; i < NVERTS; i++) {
-    vertX1[i] = random(width);
-    vertY1[i] = random(width);
-    vertX2[i] = random(width);
-    vertY2[i] = random(width);
-  }
-}
-
-void drawMultigon(PGraphics pg) {
-  float t = 0.5 * millis() * 1e-3;
-  for (int i = 0; i < NVERTS; i++) {
-    vertX[i] = map(cos(t), -1, +1, vertX1[i], vertX2[i]);
-    vertY[i] = map(sin(t), -1, +1, vertY1[i], vertY2[i]);
-  }
-  pg.beginDraw();
-  pg.strokeWeight(5);
-  pg.background(0xff);
-  for (int i = 0; i < NVERTS - 1; i++) {
-    for (int j = i + 1; j < NVERTS; j++) {
-      pg.line(vertX[i], vertY[i], vertX[j], vertY[j]);
-    }
-  }
-  pg.endDraw();
-}
-
-void drawBackdrop(PGraphics pg) {
-  pg.beginDraw();
-  pg.colorMode(HSB, 1, 1, 1, 1);
-  pg.background(#ca2687);
-  for (int i = 0; i < 400; i++) {
-    pg.strokeWeight(random(400 - i));
-    pg.stroke(random(1), 1, 1, 0.7);
-    // pg.point(random(pg.width), random(pg.height));
-    pg.pushMatrix();
-      pg.rotate(random(-360, 360));
-      pg.noStroke();
-      pg.fill(255, random(50, 150));
-      pg.rect(random(pg.width), random(pg.height), 100, 100);
-      pg.ellipse(count, (pg.height/2 + 40) + random(-yRand, yRand), sizeRand, sizeRand);
-    pg.popMatrix();
-  }
-  // pg.ellipse(count, (pg.height/2 + 40) + random(-yRand, yRand), sizeRand, sizeRand);
-  pg.endDraw();
+	H.drawStage();
 }
 
 // ************************************************************************************
 
-void keyReleased() {
-  if (key == 's') saveFrame("_##.png");
+void draw() {
+	PGraphics tmp = null;
+
+	if (record) {
+		tmp = beginRecord(PDF, "render-######.pdf");
+	}
+
+	if (tmp == null) {
+		H.drawStage();
+	} else {
+		PGraphics g = tmp;
+		boolean uses3D = false;
+		float alpha = 1;
+		H.stage().paintAll(g, uses3D, alpha);
+	}
+
+	if (record) {
+		endRecord();
+		record = false;
+	}
 }
 
-void mouseClicked() {
-  resetMultigon();
-  drawBackdrop(backdropImg);
+// ************************************************************************************
+
+void keyPressed() {
+	if (key == 's') {
+		record = true;
+		draw();
+	}
 }
