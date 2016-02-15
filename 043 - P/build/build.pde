@@ -10,7 +10,7 @@ import processing.pdf.*;
 
 boolean record = false;
 boolean paused = true;
-HDrawablePool pool, circuitPool;
+HDrawablePool pool;
 HColorPool colors;
 
 // ************************************************************************************
@@ -24,49 +24,30 @@ void setup() {
 
 	colors = new HColorPool(#1a86c7, #b71c00, #f5f428, #af3b22, #cca292, #1a86c7, #8dcde8, #f8c023);
 
-	pool = new HDrawablePool(1000);
+	pool = new HDrawablePool(600);
 	pool.autoAddToStage()
-		.add (new HRect())
+		.add(new HShape("smudge2.svg"))
+		.add(new HShape("smudge5.svg"))
+		.add(new HShape("smudge7.svg"))
 		.colorist(new HColorPool(#1a86c7, #b71c00, #f5f428, #af3b22, #cca292, #1a86c7, #8dcde8, #f8c023).fillOnly())
 		.layout(shapeLayout)
 		.onCreate (
 			new HCallback() {
 				public void run(Object obj) {
-					HDrawable d = (HDrawable) obj;
+					HShape d = (HShape) obj;
 					d
+						.enableStyle(false)
+						.strokeJoin(ROUND)
+						.strokeCap(ROUND)
 						.noStroke()
-						.size( (int)random(1, 20) )
+						.size( (int)random(1, 55) )
 						.anchorAt(H.CENTER)
-						.rotation(45)
+						.rotation(180)
 					;
 				}
 			}
 		)
 		.requestAll();
-
-	// Circuits
-	// circuitPool = new HDrawablePool(250);
-	// circuitPool.autoAddToStage()
-	// 	.add (new HShape("svg1.svg"))
-	// 	.add (new HShape("svg2.svg"))
-	// 	.add (new HShape("svg4.svg"))
-	// 	.layout(shapeLayout)
-	// 	.onCreate (
-	// 		new HCallback() {
-	// 			public void run(Object obj) {
-	// 				HShape d = (HShape) obj;
-	// 				d
-	// 					.anchorAt(H.CENTER)
-	// 					.noStroke()
-	// 					.size( (int)random(20, 100) )
-	// 					.rotation( 90 )
-	// 				;
-	// 				d.randomColors(colors.fillOnly());
-	// 			}
-	// 		}
-	// 	)
-	//
-	// .requestAll();
 
 	H.drawStage();
 }
