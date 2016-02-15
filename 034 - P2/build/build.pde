@@ -37,7 +37,6 @@ void setup() {
 						.strokeCap(ROUND)
 						.size( (int)random(1, 40) )
 						.anchorAt(H.CENTER)
-						.rotation(45)
 					;
 				}
 			}

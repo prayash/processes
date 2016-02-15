@@ -21,8 +21,8 @@ import java.io.IOException;
 
 public class build extends PApplet {
 
-// Processes - Day 34
-// Prayash Thapa - February 3, 2016
+// Processes - Day 22
+// Prayash Thapa - January 22, 2016
 
 
 
@@ -31,23 +31,25 @@ public class build extends PApplet {
 
 
 
+HDrawablePool assetPool;
 boolean record = false;
-boolean paused = true;
-HDrawablePool pool;
 
 // ************************************************************************************
 
 public void setup() {
 	
-	H.init(this).background(0xffFF5F78);
-	HImage hitObj = new HImage("text.png");
+	H.init(this).background(0xff1F1F1F);
+	HImage hitObj = new HImage("torii.png");
 	H.add(hitObj).visibility(false);
 	HShapeLayout shapeLayout = new HShapeLayout().target(hitObj);
 
-	pool = new HDrawablePool(202);
-	pool.autoAddToStage()
-		.add(new HShape("svg1.svg"))
-		.colorist(new HColorPool(0xff807498,0xff797999,0xff838495,0xffB4A6A0,0xffC3AFA6,0xffD1C3B4,0xffE1E4E1).fillOnly())
+	// Torii
+	assetPool = new HDrawablePool(700);
+	assetPool.autoAddToStage()
+		.add(new HShape("smudge1.svg"))
+		.add(new HShape("smudge2.svg"))
+		.add(new HShape("smudge5.svg"))
+		.add(new HShape("smudge7.svg"))
 		.layout(shapeLayout)
 		.onCreate (
 			new HCallback() {
@@ -55,17 +57,19 @@ public void setup() {
 					HShape d = (HShape) obj;
 					d
 						.enableStyle(false)
-						.noStroke()
 						.strokeJoin(ROUND)
 						.strokeCap(ROUND)
-						.size( (int)random(1, 40) )
+						.strokeWeight(0)
 						.anchorAt(H.CENTER)
+						.fill(0xFF)
+						.size(random(2, 60))
+						// .rotation(random(1, 75))
 					;
 				}
 			}
 		)
-		.requestAll();
 
+	.requestAll();
 	H.drawStage();
 }
 
@@ -73,10 +77,7 @@ public void setup() {
 
 public void draw() {
 	PGraphics tmp = null;
-
-	if (record) {
-		tmp = beginRecord(PDF, "render-######.pdf");
-	}
+	if (record) tmp = beginRecord(PDF, "render-######.pdf");
 
 	if (tmp == null) {
 		H.drawStage();

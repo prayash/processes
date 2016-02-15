@@ -18,13 +18,13 @@ HColorPool colors;
 void setup() {
 	size(700, 700);
 	H.init(this).background(#FFFFFF);
-	HImage hitObj = new HImage("hex.png");
+	HImage hitObj = new HImage("P.png");
 	H.add(hitObj).visibility(false);
 	HShapeLayout shapeLayout = new HShapeLayout().target(hitObj);
 
 	colors = new HColorPool(#1a86c7, #b71c00, #f5f428, #af3b22, #cca292, #1a86c7, #8dcde8, #f8c023);
 
-	pool = new HDrawablePool(500);
+	pool = new HDrawablePool(1000);
 	pool.autoAddToStage()
 		.add (new HRect())
 		.colorist(new HColorPool(#1a86c7, #b71c00, #f5f428, #af3b22, #cca292, #1a86c7, #8dcde8, #f8c023).fillOnly())
@@ -35,7 +35,7 @@ void setup() {
 					HDrawable d = (HDrawable) obj;
 					d
 						.noStroke()
-						.size( (int)random(1, 12) )
+						.size( (int)random(1, 20) )
 						.anchorAt(H.CENTER)
 						.rotation(45)
 					;
@@ -45,28 +45,28 @@ void setup() {
 		.requestAll();
 
 	// Circuits
-	circuitPool = new HDrawablePool(25);
-	circuitPool.autoAddToStage()
-		.add (new HShape("svg1.svg"))
-		.add (new HShape("svg2.svg"))
-		.add (new HShape("svg4.svg"))
-		.layout(shapeLayout)
-		.onCreate (
-			new HCallback() {
-				public void run(Object obj) {
-					HShape d = (HShape) obj;
-					d
-						.anchorAt(H.CENTER)
-						.noStroke()
-						.size( (int)random(20, 400) )
-						.rotation( 90 )
-					;
-					d.randomColors(colors.fillOnly());
-				}
-			}
-		)
-
-	.requestAll();
+	// circuitPool = new HDrawablePool(250);
+	// circuitPool.autoAddToStage()
+	// 	.add (new HShape("svg1.svg"))
+	// 	.add (new HShape("svg2.svg"))
+	// 	.add (new HShape("svg4.svg"))
+	// 	.layout(shapeLayout)
+	// 	.onCreate (
+	// 		new HCallback() {
+	// 			public void run(Object obj) {
+	// 				HShape d = (HShape) obj;
+	// 				d
+	// 					.anchorAt(H.CENTER)
+	// 					.noStroke()
+	// 					.size( (int)random(20, 100) )
+	// 					.rotation( 90 )
+	// 				;
+	// 				d.randomColors(colors.fillOnly());
+	// 			}
+	// 		}
+	// 	)
+	//
+	// .requestAll();
 
 	H.drawStage();
 }

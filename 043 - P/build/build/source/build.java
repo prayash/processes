@@ -21,8 +21,8 @@ import java.io.IOException;
 
 public class build extends PApplet {
 
-// Processes - Day 34
-// Prayash Thapa - February 3, 2016
+// Processes - Day 43
+// Prayash Thapa - February 12, 2016
 
 
 
@@ -33,38 +33,63 @@ public class build extends PApplet {
 
 boolean record = false;
 boolean paused = true;
-HDrawablePool pool;
+HDrawablePool pool, circuitPool;
+HColorPool colors;
 
 // ************************************************************************************
 
 public void setup() {
 	
-	H.init(this).background(0xffFF5F78);
-	HImage hitObj = new HImage("text.png");
+	H.init(this).background(0xffFFFFFF);
+	HImage hitObj = new HImage("P.png");
 	H.add(hitObj).visibility(false);
 	HShapeLayout shapeLayout = new HShapeLayout().target(hitObj);
 
-	pool = new HDrawablePool(202);
+	colors = new HColorPool(0xff1a86c7, 0xffb71c00, 0xfff5f428, 0xffaf3b22, 0xffcca292, 0xff1a86c7, 0xff8dcde8, 0xfff8c023);
+
+	pool = new HDrawablePool(1000);
 	pool.autoAddToStage()
-		.add(new HShape("svg1.svg"))
-		.colorist(new HColorPool(0xff807498,0xff797999,0xff838495,0xffB4A6A0,0xffC3AFA6,0xffD1C3B4,0xffE1E4E1).fillOnly())
+		.add (new HRect())
+		.colorist(new HColorPool(0xff1a86c7, 0xffb71c00, 0xfff5f428, 0xffaf3b22, 0xffcca292, 0xff1a86c7, 0xff8dcde8, 0xfff8c023).fillOnly())
 		.layout(shapeLayout)
 		.onCreate (
 			new HCallback() {
 				public void run(Object obj) {
-					HShape d = (HShape) obj;
+					HDrawable d = (HDrawable) obj;
 					d
-						.enableStyle(false)
 						.noStroke()
-						.strokeJoin(ROUND)
-						.strokeCap(ROUND)
-						.size( (int)random(1, 40) )
+						.size( (int)random(1, 20) )
 						.anchorAt(H.CENTER)
+						.rotation(45)
 					;
 				}
 			}
 		)
 		.requestAll();
+
+	// Circuits
+	// circuitPool = new HDrawablePool(250);
+	// circuitPool.autoAddToStage()
+	// 	.add (new HShape("svg1.svg"))
+	// 	.add (new HShape("svg2.svg"))
+	// 	.add (new HShape("svg4.svg"))
+	// 	.layout(shapeLayout)
+	// 	.onCreate (
+	// 		new HCallback() {
+	// 			public void run(Object obj) {
+	// 				HShape d = (HShape) obj;
+	// 				d
+	// 					.anchorAt(H.CENTER)
+	// 					.noStroke()
+	// 					.size( (int)random(20, 100) )
+	// 					.rotation( 90 )
+	// 				;
+	// 				d.randomColors(colors.fillOnly());
+	// 			}
+	// 		}
+	// 	)
+	//
+	// .requestAll();
 
 	H.drawStage();
 }

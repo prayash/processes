@@ -9,23 +9,24 @@ import hype.interfaces.*;
 import processing.pdf.*;
 
 HDrawablePool assetPool;
-HPixelColorist colors;
 boolean record = false;
 
 // ************************************************************************************
 
 void setup() {
 	size(700, 700);
-	H.init(this).background(#FFA812);
+	H.init(this).background(#1F1F1F);
 	HImage hitObj = new HImage("torii.png");
 	H.add(hitObj).visibility(false);
 	HShapeLayout shapeLayout = new HShapeLayout().target(hitObj);
-	colors = new HPixelColorist("blue.png");
-	
+
 	// Torii
-	assetPool = new HDrawablePool(10000);
+	assetPool = new HDrawablePool(700);
 	assetPool.autoAddToStage()
-		.add(new HShape("svg1.svg"))
+		.add(new HShape("smudge1.svg"))
+		.add(new HShape("smudge2.svg"))
+		.add(new HShape("smudge5.svg"))
+		.add(new HShape("smudge7.svg"))
 		.layout(shapeLayout)
 		.onCreate (
 			new HCallback() {
@@ -37,15 +38,15 @@ void setup() {
 						.strokeCap(ROUND)
 						.strokeWeight(0)
 						.anchorAt(H.CENTER)
-						.fill( colors.getColor( d.x(), d.y() ), 100 )
-						.size(15)
+						.fill(0xFF)
+						.size(random(2, 60))
+						// .rotation(random(1, 75))
 					;
 				}
 			}
 		)
 
 	.requestAll();
-
 	H.drawStage();
 }
 
@@ -53,7 +54,6 @@ void setup() {
 
 void draw() {
 	PGraphics tmp = null;
-
 	if (record) tmp = beginRecord(PDF, "render-######.pdf");
 
 	if (tmp == null) {
