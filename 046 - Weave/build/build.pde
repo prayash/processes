@@ -10,8 +10,7 @@ import hype.extended.layout.*;
 import hype.interfaces.*;
 import processing.pdf.*;
 
-boolean paused = false;
-boolean record = false;
+boolean paused = false, record = false;
 
 HDrawablePool pool;
 HPolarLayout layout;

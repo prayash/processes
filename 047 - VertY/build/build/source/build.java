@@ -33,24 +33,11 @@ public class build extends PApplet {
 
 
 
-boolean paused = false;
-boolean record = false;
+boolean paused = false, record = false;
+HDrawablePool pool, pool2, pool3;
+HShapeLayout hsl, hsl2, hsl3;
 
-HDrawablePool pool;
-HDrawablePool pool2;
-HDrawablePool pool3;
-HDrawablePool pool4;
-HDrawablePool pool5;
-
-HShapeLayout hsl;
-HShapeLayout hsl2;
-HShapeLayout hsl3;
-HShapeLayout hsl4;
-
-HTimer timer;
-HColorPool colors;
-HColorPool colors2;
-
+HColorPool colors, colors2;
 HPixelColorist pcolors;
 
 // ************************************************************************************
@@ -119,7 +106,7 @@ public void setup() {
 // ************************************************************************************
 
 public void draw() {
-
+	H.drawStage();
 }
 
 // ************************************************************************************
@@ -158,9 +145,7 @@ public void drawThings() {
 					// pcolors.applyColor(d);
 				}
 			}
-		)
-
-	.requestAll();
+		).requestAll();
 
 	pool = new HDrawablePool(200); //top shapes
 	pool.autoAddToStage()
@@ -196,8 +181,7 @@ public void drawThings() {
 
 				}
 			}
-		)
-	.requestAll();
+		).requestAll();
 
 	pool2 = new HDrawablePool(20); // top camo
 	pool2.autoAddToStage()
@@ -227,17 +211,9 @@ public void drawThings() {
 					d.randomColors(colors.fillOnly());
 				}
 			}
-		)
-
-	.requestAll();
+		).requestAll();
 	H.drawStage();
-
 }
-
-
-// +        = redraw() advances 1 iteration
-// r        = render to PDF
-// c        = recolor
 
 public void keyPressed() {
 	if (key == ']') drawThings();
@@ -248,8 +224,6 @@ public void keyPressed() {
 		saveVector();
 		H.drawStage();
 	}
-
-	// H.drawStage();
 }
 
 public void saveVector() {

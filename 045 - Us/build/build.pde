@@ -10,13 +10,11 @@ import hype.interfaces.*;
 import processing.pdf.*;
 
 boolean record = false;
-
-HDrawablePool heartPool;
-HDrawablePool flowerPool;
-HDrawablePool particlePool;
 HShapeLayout shapeLayout;
-HColorPool colors;
-HColorPool colors2;
+HDrawablePool heartPool, flowerPool, particlePool;
+HColorPool colors, colors2;
+
+// ************************************************************************************
 
 void setup() {
 	size(700, 700);
@@ -122,8 +120,6 @@ void drawThings() {
 
 void keyPressed() {
 	if (key == ']') drawThings();
-
-
 	if (key == 's' || key == 'S') {
 		record = true;
 		saveVector();
@@ -135,11 +131,7 @@ void saveVector() {
 	PGraphics tmp = null;
 	tmp = beginRecord(PDF, "render_#####.pdf");
 
-	if (tmp == null) {
-		H.drawStage();
-	} else {
-		H.stage().paintAll(tmp, false, 1); // PGraphics, uses3D, alpha
-	}
+	if (tmp == null) H.drawStage(); else H.stage().paintAll(tmp, false, 1); // PGraphics, uses3D, alpha
 
 	endRecord();
 }
