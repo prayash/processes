@@ -1,14 +1,37 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import hype.*; 
+import hype.extended.behavior.*; 
+import hype.extended.colorist.*; 
+import hype.extended.layout.*; 
+import hype.interfaces.*; 
+import processing.pdf.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class build extends PApplet {
+
 // Processes - Day 47
 // Prayash Thapa - February 16, 2016
 
 // ************************************************************************************
 
-import hype.*;
-import hype.extended.behavior.*;
-import hype.extended.colorist.*;
-import hype.extended.layout.*;
-import hype.interfaces.*;
-import processing.pdf.*;
+
+
+
+
+
+
 
 boolean paused = false;
 boolean record = false;
@@ -32,9 +55,9 @@ HPixelColorist pcolors;
 
 // ************************************************************************************
 
-void setup() {
-	size(800, 800);
-	H.init(this).background(#192033 ).autoClear(true);
+public void setup() {
+	
+	H.init(this).background(0xff192033 ).autoClear(true);
 
 	HEllipse hitObj = new HEllipse(400);
 	H.add(hitObj).anchorAt(H.CENTER).locAt(H.CENTER).visibility(false);
@@ -64,28 +87,28 @@ void setup() {
 
 	colors = new HColorPool()
 
-		.add(#ffff29,2) //yellow
-		.add(#ffc206,6) //light orange
-		.add(#ff8708,4) // dark orange
- 		.add(#333399,4) //purple
-		.add(#8561ff,2) //light purp
-		.add(#00cccc,6) //teal
-		.add(#ff58e0,2) //pink
-		.add(#9f368b) //d pink
-		.add(#dee7ff,12)
-		.add(#455787,4)
-		.add(#2f3b5c,4)
+		.add(0xffffff29,2) //yellow
+		.add(0xffffc206,6) //light orange
+		.add(0xffff8708,4) // dark orange
+ 		.add(0xff333399,4) //purple
+		.add(0xff8561ff,2) //light purp
+		.add(0xff00cccc,6) //teal
+		.add(0xffff58e0,2) //pink
+		.add(0xff9f368b) //d pink
+		.add(0xffdee7ff,12)
+		.add(0xff455787,4)
+		.add(0xff2f3b5c,4)
 		.fillOnly()
 	;
 
 	colors2 = new HColorPool()
-		.add(#ffffff)
-		.add(#e7e7e7) //lightest
+		.add(0xffffffff)
+		.add(0xffe7e7e7) //lightest
 		// .add(#0A5282) // blue
-		.add(#B5C6D7) //v.light blue
-		.add(#333333,2)
-		.add(#666666)
-		.add(#111111,3)
+		.add(0xffB5C6D7) //v.light blue
+		.add(0xff333333,2)
+		.add(0xff666666)
+		.add(0xff111111,3)
 		.fillOnly()
 	;
 
@@ -95,13 +118,13 @@ void setup() {
 
 // ************************************************************************************
 
-void draw() {
+public void draw() {
 
 }
 
 // ************************************************************************************
 
-void drawThings() {
+public void drawThings() {
 	H.clearStage();
 
 	pool3 = new HDrawablePool(250); //BG
@@ -124,7 +147,7 @@ void drawThings() {
 					HShape d = (HShape) obj;
 					d
 						.enableStyle(false)
-						.fill(#2f3b5c)
+						.fill(0xff2f3b5c)
 						// .strokeWeight(0.3)
 						// .stroke(#444444)
 						.noStroke()
@@ -135,7 +158,9 @@ void drawThings() {
 					// pcolors.applyColor(d);
 				}
 			}
-		).requestAll();
+		)
+
+	.requestAll();
 
 	pool = new HDrawablePool(200); //top shapes
 	pool.autoAddToStage()
@@ -171,7 +196,8 @@ void drawThings() {
 
 				}
 			}
-		).requestAll();
+		)
+	.requestAll();
 
 	pool2 = new HDrawablePool(20); // top camo
 	pool2.autoAddToStage()
@@ -201,11 +227,19 @@ void drawThings() {
 					d.randomColors(colors.fillOnly());
 				}
 			}
-		).requestAll();
+		)
+
+	.requestAll();
 	H.drawStage();
+
 }
 
-void keyPressed() {
+
+// +        = redraw() advances 1 iteration
+// r        = render to PDF
+// c        = recolor
+
+public void keyPressed() {
 	if (key == ']') drawThings();
 
 	if (key == 'r') {
@@ -214,11 +248,23 @@ void keyPressed() {
 		saveVector();
 		H.drawStage();
 	}
+
+	// H.drawStage();
 }
 
-void saveVector() {
+public void saveVector() {
 	PGraphics tmp = null;
 	tmp = beginRecord(PDF, "pdf/render_#####.pdf");
 	if (tmp == null) H.drawStage(); else H.stage().paintAll(tmp, false, 1); // PGraphics, uses3D, alpha
 	endRecord();
+}
+  public void settings() { 	size(800, 800); }
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "build" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
 }
