@@ -12,7 +12,7 @@ import processing.pdf.*;
 
 boolean paused = false, record = false;
 HDrawablePool pool, pool2, pool3;
-HShapeLayout hsl, hsl2, hsl3;
+HShapeLayout hsl;
 
 HColorPool colors, colors2;
 HPixelColorist pcolors;
@@ -23,31 +23,9 @@ void setup() {
 	size(800, 800);
 	H.init(this).background(#192033 ).autoClear(true);
 
-	HEllipse hitObj = new HEllipse(400);
-	H.add(hitObj).anchorAt(H.CENTER).locAt(H.CENTER).visibility(false);
-	hsl=new HShapeLayout().target(hitObj);
-
-	HEllipse hitObj2 = new HEllipse(350);
-	H.add(hitObj2).anchorAt(H.CENTER).locAt(H.CENTER).visibility(false);
-	hsl2=new HShapeLayout().target(hitObj2);
-
-	// HImage hitObj2 = new HImage("cloudy.png");
-	// H.add(hitObj2).anchorAt(H.CENTER).locAt(H.CENTER).size(1800).visibility(false).rotate(90);
-	// hsl2 = new HShapeLayout().target(hitObj2);
-
-	HImage hitObj3 = new HImage("hairlayout.png");
-	H.add(hitObj3).anchorAt(H.CENTER).locAt(H.CENTER).size(1100).visibility(false);
-	hsl3 = new HShapeLayout().target(hitObj3);
-
-	// HImage hitObj4 = new HImage("cloudy3.png");
-	// H.add(hitObj4).anchorAt(H.CENTER).locAt(H.CENTER).size(1000).visibility(false).rotate(180);
-	// hsl4 = new HShapeLayout().target(hitObj4);
-
- // 	pcolors= new HPixelColorist("indajungle.jpg")
-	// .fillOnly()
-	// .strokeOnly()
-	// .fillAndStroke()
-	;
+	HImage hitObject = new HImage("map.png");
+	H.add(hitObject).anchorAt(H.CENTER).locAt(H.CENTER).size(1100).visibility(false);
+	hsl = new HShapeLayout().target(hitObject);
 
 	colors = new HColorPool()
 		.add(#ffff29,2) //yellow
@@ -102,7 +80,7 @@ void drawThings() {
 		.add (new HShape("Shape 7.svg").anchorAt(H.CENTER))
 
 		.colorist(colors2)
-		.layout(hsl3)
+		.layout(hsl)
 
 		.onCreate (
 			new HCallback() {
@@ -134,7 +112,7 @@ void drawThings() {
 		.add (new HShape("Shape 6.svg").anchorAt(H.CENTER))
 		.add (new HShape("Shape 7.svg").anchorAt(H.CENTER))
 
-		.layout(hsl3)
+		.layout(hsl)
 
 		.onCreate (
 			new HCallback() {
@@ -163,7 +141,7 @@ void drawThings() {
 		.add (new HShape("Shape 6.svg").anchorAt(H.CENTER))
 		.add (new HShape("Shape 7.svg").anchorAt(H.CENTER))
 
-		.layout(hsl3)
+		.layout(hsl)
 
 		.onCreate (
 			new HCallback() {
