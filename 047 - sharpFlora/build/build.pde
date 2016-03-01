@@ -45,7 +45,6 @@ void setup() {
 	colors2 = new HColorPool()
 		.add(#ffffff)
 		.add(#e7e7e7) //lightest
-		// .add(#0A5282) // blue
 		.add(#B5C6D7) //v.light blue
 		.add(#333333,2)
 		.add(#666666)
@@ -54,7 +53,6 @@ void setup() {
 	;
 
 	drawThings();
-
 }
 
 // ************************************************************************************
@@ -68,14 +66,13 @@ void draw() {
 void drawThings() {
 	H.clearStage();
 
-	pool3 = new HDrawablePool(250); //BG
+	pool3 = new HDrawablePool(100);
 	pool3.autoAddToStage()
 
 		.add (new HShape("Shape 1.svg").anchorAt(H.CENTER))
 		.add (new HShape("Shape 2.svg").anchorAt(H.CENTER))
 		.add (new HShape("Shape 3.svg").anchorAt(H.CENTER))
 		.add (new HShape("Shape 4.svg").anchorAt(H.CENTER))
-		.add (new HShape("Shape 5.svg").anchorAt(H.CENTER))
 		.add (new HShape("Shape 6.svg").anchorAt(H.CENTER))
 		.add (new HShape("Shape 7.svg").anchorAt(H.CENTER))
 
@@ -89,26 +86,21 @@ void drawThings() {
 					d
 						.enableStyle(false)
 						.fill(#2f3b5c)
-						// .strokeWeight(0.3)
-						// .stroke(#444444)
 						.noStroke()
-						// .loc((int)random(width), (int)random(height) )
 						.size((int)random(5,200))
 						.rotation((int)random(0,360))
 					;
-					// pcolors.applyColor(d);
 				}
 			}
 		).requestAll();
 
-	pool = new HDrawablePool(200); //top shapes
+	pool = new HDrawablePool(100);
 	pool.autoAddToStage()
 
 		.add (new HShape("Shape 1.svg").anchorAt(H.CENTER))
 		.add (new HShape("Shape 2.svg").anchorAt(H.CENTER))
 		.add (new HShape("Shape 3.svg").anchorAt(H.CENTER))
 		.add (new HShape("Shape 4.svg").anchorAt(H.CENTER))
-		.add (new HShape("Shape 5.svg").anchorAt(H.CENTER))
 		.add (new HShape("Shape 6.svg").anchorAt(H.CENTER))
 		.add (new HShape("Shape 7.svg").anchorAt(H.CENTER))
 
@@ -121,7 +113,6 @@ void drawThings() {
 					d
 						.anchorAt(H.CENTER)
 						.noStroke()
-						// .loc((int)random(width), (int)random(height) )
 						.size((int)random(30,200))
 						.rotation((int)random(0,360))
 					;
@@ -131,13 +122,12 @@ void drawThings() {
 			}
 		).requestAll();
 
-	pool2 = new HDrawablePool(20); // top camo
+	pool2 = new HDrawablePool(20);
 	pool2.autoAddToStage()
 		.add (new HShape("Shape 1.svg").anchorAt(H.CENTER))
 		.add (new HShape("Shape 2.svg").anchorAt(H.CENTER))
 		.add (new HShape("Shape 3.svg").anchorAt(H.CENTER))
 		.add (new HShape("Shape 4.svg").anchorAt(H.CENTER))
-		.add (new HShape("Shape 5.svg").anchorAt(H.CENTER))
 		.add (new HShape("Shape 6.svg").anchorAt(H.CENTER))
 		.add (new HShape("Shape 7.svg").anchorAt(H.CENTER))
 
@@ -149,12 +139,9 @@ void drawThings() {
 					HShape d = (HShape) obj;
 					d
 						.anchorAt(H.CENTER)
-						// .strokeWeight(0.5)
-						// .stroke(#444444)
 						.noStroke()
 						.rotation((int)random(360))
 						.size((int)random(150,600))
-						// .loc((int)random(width),height/2)
 					;
 					d.randomColors(colors.fillOnly());
 				}
@@ -167,14 +154,14 @@ void keyPressed() {
 	if (key == ']') drawThings();
 	if (key == 'r') {
 		record = true;
-		saveFrame("png/render_####.png");
+		saveFrame("render_####.png");
 		saveVector();
 	}
 }
 
 void saveVector() {
 	PGraphics tmp = null;
-	tmp = beginRecord(PDF, "pdf/render_#####.pdf");
+	tmp = beginRecord(PDF, "render_#####.pdf");
 	if (tmp == null) H.drawStage(); else H.stage().paintAll(tmp, false, 1); // PGraphics, uses3D, alpha
 	endRecord();
 }
