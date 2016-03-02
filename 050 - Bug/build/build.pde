@@ -1,5 +1,5 @@
-// Processes - Day 49
-// Prayash Thapa - February 18, 2016
+// Processes - Day 50
+// Prayash Thapa - February 19, 2016
 
 import hype.*;
 import hype.extended.behavior.*;
@@ -16,18 +16,18 @@ HShape s1;
 // ************************************************************************************
 
 void setup() {
-	size(700, 700);
-	H.init(this).background(#FFFFFF);
+	size(600, 400);
+	H.init(this).background(#1C1C1C);
 
-	HImage i1 = new HImage("brain.png");
+	HImage i1 = new HImage("map.png");
 	H.add(i1).visibility(false);
 	HShapeLayout s1 = new HShapeLayout().target(i1);
 
-	colors = new HColorPool(#482964,#563D66,#535E81,#495CC5,#4E72CA,#7A86AF,#7692D1,#8B9ECB,#A6B6D6);
+	colors = new HColorPool(#1a86c7, #b71c00, #f5f428, #af3b22, #cca292, #1a86c7, #8dcde8, #f8c023);
 
-	pool = new HDrawablePool(250);
+	pool = new HDrawablePool(2500);
 	pool.autoAddToStage()
-		.add(new HShape("circuit.svg"))
+		.add(new HShape("components.svg"))
 		.layout(s1)
 		.onCreate(
 			new HCallback() {
@@ -40,30 +40,7 @@ void setup() {
 						.noStroke()
 						.fill(colors.getColor(), 200)
 						.anchorAt(H.CENTER)
-						.rotate((int)random(0, 135))
-						.size((int)random(5, 150))
-					;
-				}
-			}
-		).requestAll();
-
-	pool = new HDrawablePool(30);
-	pool.autoAddToStage()
-		.add(new HShape("circuit.svg"))
-		.layout(s1)
-		.onCreate(
-			new HCallback() {
-				public void run(Object obj) {
-					HShape d = (HShape) obj;
-					d
-						.enableStyle(false)
-						.strokeJoin(ROUND)
-						.strokeCap(ROUND)
-						.noStroke()
-						.fill(colors.getColor(), 200)
-						.anchorAt(H.CENTER)
-						.rotate(45)
-						.size( (int)random(5) * 100 )
+						.size((int)random(2, 70))
 					;
 				}
 			}
