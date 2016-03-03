@@ -52,30 +52,22 @@ void setup() {
 // ************************************************************************************
 
 void draw() {
-	PGraphics tmp = null;
 
-	if (record) tmp = beginRecord(PDF, "render-######.pdf");
-
-	if (tmp == null) {
-		H.drawStage();
-	} else {
-		PGraphics g = tmp;
-		boolean uses3D = false;
-		float alpha = 1;
-		H.stage().paintAll(g, uses3D, alpha);
-	}
-
-	if (record) {
-		endRecord();
-		record = false;
-	}
 }
 
 // ************************************************************************************
 
 void keyPressed() {
-	if (key == 's') {
+	if (key == 'r') {
 		record = true;
-		draw();
+		saveFrame("render_####.png");
+		saveVector();
 	}
+}
+
+void saveVector() {
+	PGraphics tmp = null;
+	tmp = beginRecord(PDF, "render_#####.pdf");
+	if (tmp == null) H.drawStage(); else H.stage().paintAll(tmp, false, 1); // PGraphics, uses3D, alpha
+	endRecord();
 }
