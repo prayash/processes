@@ -1,5 +1,5 @@
-// Processes - Day 53
-// Prayash Thapa - February 22, 2016
+// Processes - Day 54
+// Prayash Thapa - February 23, 2016
 
 import hype.*;
 import hype.extended.behavior.*;
@@ -15,7 +15,7 @@ HColorPool colors;
 
 // ************************************************************************************
 
-void setup(){
+void setup() {
 	size(640, 640, P3D);
 	H.init(this).background(#e7e7e7).use3D(true).autoClear(true);
 	frameRate(5);
