@@ -8,7 +8,7 @@ float theta;
 float amplitude;
 
 void setup() {
-  size(300, 450);
+  size(350, 450);
   noStroke();
 }
 
@@ -16,8 +16,9 @@ void setup() {
 
 void draw() {
   background(0);
-  for (int i = 0; i < numberOfWaves; i++) drawWave(i); theta += 0.02;
-  // if (theta <= TWO_PI) saveFrame("image-###.png");
+  for (int i = 0; i < numberOfWaves; i++) drawWave(i); theta += 0.0523;
+  // if (theta <= TWO_PI) saveFrame("image-###.gif");
+  // if (frameCount % 4 == 0 && frameCount < 121) saveFrame("image-####.gif");
 }
 
 // ************************************************************************************

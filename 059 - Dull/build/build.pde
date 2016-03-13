@@ -11,11 +11,13 @@ void setup() {
 // ************************************************************************************
 
 void draw() {
-  fill(255, 5); noStroke(); rect(0, 0, 500, 500);
+  fill(#d92b6a, 5); noStroke(); rect(0, 0, 500, 500);
   translate(random(-10, 510), random(-10, 510));
-  stroke(random(150), 100);
+  stroke(#d92b6a);
   line(0, 0, 30, 30);
-  filter(ERODE);
+  filter(ERODE); filter(BLUR);
+}
 
-  if (mousePressed) rotate(random(10));
+void keyReleased() {
+  if (key == 's' || key == 'S') saveFrame("_##.png");
 }
