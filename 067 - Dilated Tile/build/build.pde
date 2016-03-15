@@ -4,25 +4,24 @@
 import processing.pdf.*;
 import java.util.Calendar;
 
-boolean recordPDF = false;
+int NORTH       = 0;
+int NORTHEAST   = 1;
+int EAST        = 2;
+int SOUTHEAST   = 3;
+int SOUTH       = 4;
+int SOUTHWEST   = 5;
+int WEST        = 6;
+int NORTHWEST   = 7;
 
-int NORTH = 0;
-int NORTHEAST = 1;
-int EAST = 2;
-int SOUTHEAST = 3;
-int SOUTH = 4;
-int SOUTHWEST = 5;
-int WEST = 6;
-int NORTHWEST= 7;
+float stepSize  = 2;
+float diameter  = 1;
 
-float stepSize = 2;
-float diameter = 1;
-
-float drawMode = 1;
-int counter = 0;
+int drawMode  = 1;
+int counter     = 0;
 
 int direction;
 float posX, posY;
+boolean recordPDF = false;
 
 // ************************************************************************************
 
