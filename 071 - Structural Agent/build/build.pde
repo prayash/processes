@@ -14,7 +14,7 @@ boolean freeze    = false;
 
 void setup() {
   size(600, 300);
-  frameRate(60);
+  frameRate(20);
 
   // first circle
   x[0] = width/2;
@@ -63,9 +63,10 @@ void draw() {
   for (int i = 0 ; i < currentCount; i++) {
     fill(#55acee, 150); noStroke();
     // fill(50);
-    ellipse(x[i], y[i], r[i] * 2, r[i] * 2);
+    ellipse(x[i], y[i], r[i], r[i]);
     stroke(#55acee, 50); strokeWeight((int)random(1, 3));
-    line(width/2, height/2, x[i], y[i]);
+    // line(width/2, height/2, x[i], y[i]);
+    line(x[i], y[i], newX, y[i]);
   }
 
   if (currentCount >= maxCount) noLoop();
