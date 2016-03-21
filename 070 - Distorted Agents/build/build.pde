@@ -10,7 +10,6 @@ float centerX, centerY;
 float[] x         = new float[formRes];
 float[] y         = new float[formRes];
 
-boolean filled    = false;
 boolean freeze    = false;
 
 // ************************************************************************************
@@ -21,6 +20,8 @@ void setup() {
   centerX = width/2;
   centerY = height/2;
   float angle = radians(360 / float(formRes));
+
+  // Initial setup / starting positions
   for (int i = 0; i < formRes; i++) {
     x[i] = cos(angle * i) * initRadius;
     y[i] = sin(angle * i) * initRadius;
@@ -33,21 +34,20 @@ void setup() {
 // ************************************************************************************
 
 void draw() {
-  // floating towards mouse position
+  // Float towards mouse position
   if (mouseX != 0 || mouseY != 0) {
     centerX += (mouseX - centerX) * ease;
     centerY += (mouseY - centerY) * ease;
   }
 
-  // calculate new points
+  // Calculate new points & add randomness
   for (int i = 0; i < formRes; i++){
     x[i] += random(-stepSize, stepSize);
     y[i] += random(-stepSize, stepSize);
   }
 
   strokeWeight(0.75);
-  if (filled) fill(random(255));
-  else noFill();
+  noFill();
 
   beginShape();
     // Start Point
@@ -55,7 +55,6 @@ void draw() {
 
     // only these points are drawn
     for (int i = 0; i < formRes; i++) {
-
       if (keyPressed == true) ellipse(x[i] + centerX, y[i] + centerY, 5, 5);
       else vertex(x[i] + centerX, y[i] + centerY);
     }
@@ -83,9 +82,6 @@ void mousePressed() {
 void keyReleased() {
   if (key == 's') saveFrame("_##.png");
   if (key == DELETE || key == BACKSPACE) background(#1a232a);
-
-  if (key == '1') filled = false;
-  if (key == '2') filled = true;
 
   if (key == 'b') filter(BLUR, 1);
   if (key == 'e') filter(ERODE);
