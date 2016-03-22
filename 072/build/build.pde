@@ -1,9 +1,13 @@
 /**
- * limited diffusion aggregation
+ * pack as many cirlces as possible together
+ *
+ * MOUSE
+ * press + position x/y : move area of interest
  *
  * KEYS
- * s                   : save png
- * p                   : save pdf
+ * arrow up/down        : resize area of interest
+ * s                    : save png
+ * p                    : save pdf
  */
 
 import processing.pdf.*;
@@ -15,62 +19,93 @@ int maxCount = 5000; //max count of the cirlces
 int currentCount = 1;
 float[] x = new float[maxCount];
 float[] y = new float[maxCount];
-float[] r = new float[maxCount]; // radius
+float[] r = new float[maxCount]; //radius
+int[] closestIndex = new int[maxCount]; //index
+
+float minRadius = 3;
+float maxRadius = 50;
+
+// for mouse and arrow up/down interaction
+float mouseRect = 30;
 
 void setup() {
-  size(600,600);
+  size(800,800);
+  noFill();
   smooth();
-  //frameRate(10);
+  cursor(CROSS);
 
   // first circle
-  x[0] = width/2;
-  y[0] = height/2;
-  r[0] = 10;
-  //r[0] = 400;
+  x[0] = 200;
+  y[0] = 100;
+  r[0] = 50;
+  closestIndex[0] = 0;
 }
+
 
 
 void draw() {
   if (savePDF) beginRecord(PDF, timestamp()+".pdf");
   background(255);
 
-  strokeWeight(0.5);
-  //noFill();
+  // create a random position
+  float newX = random(0+maxRadius,width-maxRadius);
+  float newY = random(0+maxRadius,height-maxRadius);
+  float newR = minRadius;
 
-  // create a radom set of parameters
-  float newR = random(1, 7);
-  float newX = random(0+newR, width-newR);
-  float newY = random(0+newR, height-newR);
+  // create a random position according to mouse position
+  if (mousePressed == true) {
+    newX = random(mouseX-mouseRect/2,mouseX+mouseRect/2);
+    newY = random(mouseY-mouseRect/2,mouseY+mouseRect/2);
+    newR = 1;
+  }
 
-  float closestDist = 100000000;
-  int closestIndex = 0;
-  // which circle is the closest?
+  boolean intersection = false;
+
+  // find out, if new circle intersects with one of the others
   for(int i=0; i < currentCount; i++) {
-    float newDist = dist(newX,newY, x[i],y[i]);
-    if (newDist < closestDist) {
-      closestDist = newDist;
-      closestIndex = i;
+    float d = dist(newX,newY, x[i],y[i]);
+    if (d < (newR + r[i])) {
+      intersection = true;
+      break;
     }
   }
 
-  // show random position and line
-  fill(230);
-  ellipse(newX,newY,newR*2,newR*2);
-  line(newX,newY,x[closestIndex],y[closestIndex]);
+  // no intersection ... add a new circle
+  if (intersection == false) {
+    // get closest neighbour and closest possible radius
+    float newRadius = width;
+    for(int i=0; i < currentCount; i++) {
+      float d = dist(newX,newY, x[i],y[i]);
+      if (newRadius > d-r[i]) {
+        newRadius = d-r[i];
+        closestIndex[currentCount] = i;
+      }
+    }
 
-  // aline it to the closest circle outline
-  float angle = atan2(newY-y[closestIndex], newX-x[closestIndex]);
+    if (newRadius > maxRadius) newRadius = maxRadius;
 
-  x[currentCount] = x[closestIndex] + cos(angle) * (r[closestIndex]+newR);
-  y[currentCount] = y[closestIndex] + sin(angle) * (r[closestIndex]+newR);
-  r[currentCount] = newR;
-  currentCount++;
+    x[currentCount] = newX;
+    y[currentCount] = newY;
+    r[currentCount] = newRadius;
+    currentCount++;
+  }
 
   // draw them
   for (int i=0 ; i < currentCount; i++) {
-    //fill(50,150);
-    fill(50);
+    stroke(0);
+    strokeWeight(1.5);
     ellipse(x[i],y[i], r[i]*2,r[i]*2);
+    stroke(226, 185, 0);
+    strokeWeight(0.75);
+    int n = closestIndex[i];
+    line(x[i],y[i], x[n],y[n]);
+  }
+
+  // visualize the random range of the new positions
+  if (mousePressed == true) {
+    stroke(255,200,0);
+    strokeWeight(2);
+    rect(mouseX-mouseRect/2,mouseY-mouseRect/2,mouseRect,mouseRect);
   }
 
   if (currentCount >= maxCount) noLoop();
@@ -84,6 +119,12 @@ void draw() {
 void keyReleased() {
   if (key == 's' || key == 'S') saveFrame(timestamp()+"_##.png");
   if (key == 'p' || key == 'P') savePDF = true;
+}
+
+void keyPressed() {
+  // mouseRect ctrls arrowkeys up/down
+  if (keyCode == UP) mouseRect += 4;
+  if (keyCode == DOWN) mouseRect -= 4;
 }
 
 // timestamp
