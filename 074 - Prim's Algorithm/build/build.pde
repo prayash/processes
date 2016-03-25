@@ -1,3 +1,6 @@
+// Processes - Day 74
+// Prayash Thapa - March 14, 2016
+
 PVector[] vertices = new PVector[0];
 void setup() {
   size(640, 360);
@@ -18,7 +21,7 @@ void draw() {
   }
 
   // unreached = (PVector[]) splice(unreached, 0, 1);
-  ellipse(unreached[0].x, unreached[0].y, 10, 10);
+  // ellipse(unreached[0].x, unreached[0].y, 10, 10);
 
   for (int i = 0; i < vertices.length; i++) {
     ellipse(vertices[i].x, vertices[i].y, 16, 16);
