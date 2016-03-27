@@ -9,34 +9,34 @@ import hype.interfaces.*;
 
 HDrawablePool pool;
 HDrawablePool pool2;
-int cellSize = 40;
+int cellSize = 20;
 
 // ************************************************************************************
 
 void setup() {
-	size(800, 800);
-	H.init(this).background(#202020);
+	size(1000, 563);
+	H.init(this).background(#FFFFFF);
 	smooth();
 
-	final HPixelColorist colors = new HPixelColorist("wave.jpg")
-		.fillOnly()
+	final HPixelColorist colors = new HPixelColorist("aspen.jpg")
+		// .fillOnly()
 		// .strokeOnly()
-		// .fillAndStroke()
+		.fillAndStroke()
 	;
 
-	pool = new HDrawablePool(729);
+	pool = new HDrawablePool(1248);
 	pool.autoAddToStage()
 		.add(new HShape ("japan.svg"))
 		.add(new HShape ("japan2.svg"))
 		.add(new HShape ("japan3.svg"))
-		.add(new HShape ("japan4.svg"))
+		.add(new HShape ("parallel.svg"))
 		.add(new HShape ("japan5.svg"))
 		.layout (
 			new HGridLayout()
 			.startX(35)
 			.startY(35)
-			.spacing(cellSize+4,cellSize+4)
-			.cols(27)
+			.spacing(cellSize, cellSize)
+			.cols(48)
 		)
 		.onCreate (
 			new HCallback() {
@@ -53,32 +53,7 @@ void setup() {
 			}
 		).requestAll();
 
-	pool2 = new HDrawablePool(675);
-	pool2.autoAddToStage()
-		.add (
-			new HEllipse()
-			.rotate(45)
-		)
-		.layout (
-			new HGridLayout()
-			.startX(58)
-			.startY(58)
-			.spacing(cellSize+4,cellSize+4)
-			.cols(26)
-		)
-		.onCreate (
-			new HCallback() {
-				public void run(Object obj) {
-					HDrawable d = (HDrawable) obj;
-					d
-						.noStroke()
-						.anchorAt(H.CENTER)
-						.size(8)
-					;
-					colors.applyColor(d);
-				}
-			}
-		).requestAll();
+
 
 	H.drawStage();
 	noLoop();
