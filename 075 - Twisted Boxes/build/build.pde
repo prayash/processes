@@ -7,9 +7,12 @@ import hype.extended.colorist.*;
 import hype.extended.layout.*;
 import hype.interfaces.*;
 
+boolean paused;
 HDrawablePool pool;
 HPixelColorist colors;
 int boxSixe = 75;
+
+// ************************************************************************************
 
 void setup() {
 	size(640, 640, P3D);
@@ -102,6 +105,8 @@ void setup() {
 		).requestAll();
 }
 
+// ************************************************************************************
+
 void draw() {
 	H.drawStage();
 
@@ -117,6 +122,9 @@ void draw() {
 
 	// if (frameCount % 1 == 0 && frameCount < 360) saveFrame("../frames/image-#####.png");
 }
+
+// ************************************************************************************
+
 void keyPressed() {
 	if (key == 'r') saveFrame("render_####.png");
 

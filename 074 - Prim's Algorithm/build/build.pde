@@ -1,13 +1,18 @@
 // Processes - Day 74
 // Prayash Thapa - March 14, 2016
 
+// ************************************************************************************
+
 PVector[] vertices = new PVector[0];
+
 void setup() {
   size(640, 360);
   background(#202020);
   fill(255);
   noStroke();
 }
+
+// ************************************************************************************
 
 void draw() {
 
@@ -16,8 +21,8 @@ void draw() {
 
   for (int i = 0; i < vertices.length; i++) {
     unreached = (PVector[]) append(unreached, vertices[i]);
-    // stroke(255); strokeWeight(1);
-    // line(vertices[i].x, vertices[i].y, 50, 50);
+    stroke(255); strokeWeight(1);
+    line(vertices[i].x, vertices[i].y, 50, 50);
   }
 
   // unreached = (PVector[]) splice(unreached, 0, 1);
@@ -29,7 +34,16 @@ void draw() {
 
 }
 
+// ************************************************************************************
+
 void mousePressed() {
   PVector v = new PVector(mouseX, mouseY);
   vertices = (PVector[]) append(vertices, new PVector(mouseX, mouseY));
+}
+
+void keyReleased() {
+  if (key == 's') saveFrame("_##.png");
+  if (key == 'b') filter(BLUR, 1);
+  if (key == 'e') filter(ERODE);
+  if (key == 'd') filter(DILATE);
 }
