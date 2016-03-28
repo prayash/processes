@@ -16,7 +16,6 @@ int cellSize = 20;
 void setup() {
 	size(1000, 563);
 	H.init(this).background(#FFFFFF);
-	smooth();
 
 	final HPixelColorist colors = new HPixelColorist("aspen.jpg")
 		// .fillOnly()
@@ -26,11 +25,8 @@ void setup() {
 
 	pool = new HDrawablePool(1248);
 	pool.autoAddToStage()
-		.add(new HShape ("japan.svg"))
-		.add(new HShape ("japan2.svg"))
-		.add(new HShape ("japan3.svg"))
-		.add(new HShape ("parallel.svg"))
-		.add(new HShape ("japan5.svg"))
+		.add(new HShape ("parallel.svg"), 2)
+		.add(new HShape ("box.svg"), 3)
 		.layout (
 			new HGridLayout()
 			.startX(35)
