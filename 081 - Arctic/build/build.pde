@@ -62,7 +62,7 @@ void setup() {
 
 void draw() {
 	H.drawStage();
-	if (frameCount % 1 == 0 && frameCount < 360) saveFrame("../frames/image-#####.png");
+	// if (frameCount % 1 == 0 && frameCount < 360) saveFrame("../frames/image-#####.png");
 }
 
 // ************************************************************************************
