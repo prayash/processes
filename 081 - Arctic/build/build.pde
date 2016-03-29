@@ -46,7 +46,7 @@ void setup() {
 						.target(d)
 						.property(H.SIZE)
 						.relativeVal(d.y())
-						.range(65, 130)
+						.range(25, 70)
 						.speed(2)
 						.freq(1.5)
 						.currentStep(i)
