@@ -1,3 +1,6 @@
+// Processes - Day 82
+// Prayash Thapa - March 22, 2016
+
 import processing.pdf.*;
 boolean recordPDF = false;
 
@@ -12,6 +15,7 @@ float angleDistortion = 0.0;
 int counter = 0;
 boolean showImage = true;
 
+// ************************************************************************************
 
 void setup() {
   // use full screen size
@@ -35,6 +39,7 @@ void setup() {
   if (showImage) image(img, 0, 0, width, height);
 }
 
+// ************************************************************************************
 
 void draw() {
   if (mousePressed) {
@@ -61,6 +66,7 @@ void draw() {
   }
 }
 
+// ************************************************************************************
 
 void mousePressed() {
   x = mouseX;
