@@ -29,5 +29,5 @@ void draw() {
     if (key == 'x') arcLength -= 0.1;
   }
 
-  if (frameCount % 4 == 0) saveFrame("image-####.gif");
+  // if (frameCount % 4 == 0) saveFrame("image-####.gif");
 }

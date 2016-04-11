@@ -71,7 +71,7 @@ void draw() {
     endRecord();
   }
 
-  if (frameCount % 4 == 0) saveFrame("image-####.gif");
+  // if (frameCount % 4 == 0) saveFrame("image-####.gif");
 }
 
 // ************************************************************************************
