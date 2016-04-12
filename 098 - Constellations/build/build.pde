@@ -29,17 +29,17 @@ void draw() {
 class Particle {
   float xPos = random(width);
   float yPos = random(height);
-  float vx, vy, gain;
+  float vX, vY, gain;
   color col = color(255, 15);
 
   void update() {
     for (int i = 0; i < numNodes; i++) {
       gain = dist(xPos, yPos, nodes[i].xPos, nodes[i].yPos);
       if (gain > 1) {
-        vx += ((nodes[i].xPos - xPos) * boost) / gain;
-        vy += ((nodes[i].yPos - yPos) * boost) / gain;
-        xPos += vx;
-        yPos += vy;
+        vX += ((nodes[i].xPos - xPos) * boost) / gain;
+        vY += ((nodes[i].yPos - yPos) * boost) / gain;
+        xPos += vX;
+        yPos += vY;
       }
     }
   }
