@@ -7,7 +7,7 @@ Circle[] circleArr = {};
 // ************************************************************************************
 
 void setup() {
-  size(500, 300);
+  size(300, 500);
   fill(255, 50); strokeWeight(1);
   for (int i = 0; i < num; i++) circleArr = (Circle[]) append(circleArr, new Circle());
 }
