@@ -22,5 +22,5 @@ void draw() {
   }
 
   filter(ERODE);
-  if (frameCount % 4 == 0 && frameCount < 121) saveFrame("image-####.gif");
+  // if (frameCount % 4 == 0 && frameCount < 121) saveFrame("image-####.gif");
 }
