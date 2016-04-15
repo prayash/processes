@@ -1,5 +1,5 @@
-// Processes - Day 101
-// Prayash Thapa - April 10, 2016
+// Processes - Day 105
+// Prayash Thapa - April 14, 2016
 
 HDrawablePool hexPool;
 HColorPool palette;
@@ -17,7 +17,7 @@ void setup() {
 		.offsetY(0)
 	;
 
-	palette = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095a8, #00616f, #FF3300, #FF6600);
+	palette = new HColorPool(#FFFFFF, #F7F7F7, #ECECEC, #333333, #0095A8, #00616f, #FF3300, #FF6600);
 
 	hexPool = new HDrawablePool(255);
 	hexPool.autoAddToStage()
@@ -54,5 +54,5 @@ void setup() {
 
 void draw() {
 	H.drawStage();
-	// if(frameCount % 1 == 0 && frameCount < 361) saveFrame("_###.gif");
+	// if(frameCount % 6 == 0 && frameCount < 361) saveFrame("_###.gif");
  }
