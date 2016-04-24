@@ -10,6 +10,7 @@ int polyDeg = 3;
 
 void setup() {
 	size(640, 640, P3D);
+	frameRate(30);
 	H.init(this).background(#FFFFFF).use3D(true).autoClear(true);
 	hexLayout = new HHexLayout()
 		.spacing(20)
@@ -54,5 +55,5 @@ void setup() {
 
 void draw() {
 	H.drawStage();
-	// if(frameCount % 6 == 0 && frameCount < 361) saveFrame("_###.gif");
+	if(frameCount % 6 == 0 && frameCount < 181) saveFrame("_###.gif");
  }
