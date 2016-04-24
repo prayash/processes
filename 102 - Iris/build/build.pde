@@ -8,6 +8,7 @@ float dY = 28;
 
 void setup() {
   size(500, 500);
+  frameRate(30);
   background(255);
   cursor(CROSS);
 }
@@ -24,8 +25,6 @@ void draw() {
 
     for (float x = 0.5 * dX; x < width + dX; x += dX) drawSite(x, y);
   }
-
-  // saveFrame("image-####.gif");
 }
 
 // ************************************************************************************
