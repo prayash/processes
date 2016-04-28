@@ -55,5 +55,5 @@ void setup() {
 
 void draw() {
 	H.drawStage();
-	if(frameCount % 6 == 0 && frameCount < 181) saveFrame("_###.gif");
+	// if (frameCount % 6 == 0 && frameCount < 181) saveFrame("_###.gif");
  }
