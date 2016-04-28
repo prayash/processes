@@ -12,8 +12,8 @@ float[] velocityY = new float[numVertices];
 // ************************************************************************************
 
 void setup() {
-  size(600, 200);
-  background(#57385c);
+  size(500, 200);
+  background(#FFFFFF);
 
   // Init
   for (int i = 0; i < numVertices; i++) {
@@ -30,7 +30,7 @@ void setup() {
 // ************************************************************************************
 
 void draw() {
-  background(#57385c);
+  background(#FFFFFF);
 
   // * Kinetic Graph
   renderEdges();
@@ -64,7 +64,7 @@ void update() {
 }
 
 void renderEdges() {
-  stroke(#ffedbc, 120);
+  stroke(#D92B6A, 120);
   for (int i = 0; i < numVertices; i++) {
     float nodeX1 = nodeX[i];
     float nodeY1 = nodeY[i];
@@ -88,8 +88,8 @@ void renderNodes() {
     float colorValue = map(nodeRadius[i], 5, 20, 0, 1);
 
     // fillColor & strokeColor interpolate depending on nodeRadius
-    color fillColor = lerpColor(#ffedbc, #57385c, colorValue);
-    color strokeColor = lerpColor(#ffedbc, #57385c, 1 - colorValue);
+    color fillColor = lerpColor(#DC5978, #D92B6A, colorValue);
+    color strokeColor = lerpColor(#DC5978, #FFFFFF, 1 - colorValue);
 
     fill(fillColor); stroke(strokeColor);
     ellipse(nodeX[i], nodeY[i], nodeRadius[i], nodeRadius[i]);
