@@ -1,6 +1,22 @@
 // Processes - Day 103
 // Prayash Thapa - April 12, 2016
 
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+
+Minim         minim;
+AudioInput    in;
+FFT           myAudioFFT;
+boolean       showVisualizer   = false;
+int           myAudioRange     = 11;
+int           myAudioMax       = 100;
+float         myAudioAmp       = 40.0;
+float         myAudioIndex     = 0.2;
+float         myAudioIndexAmp  = myAudioIndex;
+float         myAudioIndexStep = 0.35;
+float[]       myAudioData      = new float[myAudioRange];
+
+int volume, bass;
 int numPoints     = 300;
 int numForms      = 5;
 float maxNoise    = 5;
@@ -17,6 +33,14 @@ void setup() {
   background(#EAE8CB);
   noCursor();
 
+  minim = new Minim(this);
+  in = minim.getLineIn(); // getLineIn(type, bufferSize, sampleRate, bitDepth);
+
+  // Fast Fourier Transform
+  myAudioFFT = new FFT(in.bufferSize(), in.sampleRate());
+  myAudioFFT.linAverages(myAudioRange);
+  // myAudioFFT.window(FFT.GAUSS);
+
   // - Form
   for (int x = 0; x < numForms; x++) formArr = (Form[]) append(formArr, new Form());
 
@@ -30,6 +54,12 @@ void draw() {
   fill(#EAE8CB, 15); noStroke();
   rect(0, 0, width, height);
 
+  // - Audio
+  myAudioFFT.forward(in.mix);
+  myAudioDataUpdate();
+  volume = (int) map((in.mix.level() * 10), 0, 10, 0, 10);
+  bass = (int) map(myAudioData[0] + myAudioData[1], 0, 10, 0, 10);
+
   // - Noise
   maxNoise = 5.001;
   maxRad = noise(maxNoise) * 100;
@@ -41,7 +71,7 @@ void draw() {
   pushMatrix();
 
     translate(width/2, height/2, 0);
-    rotateY(frameCount * 0.01); rotateX(frameCount * 0.01);
+    rotateY((frameCount * 0.01) + volume); rotateX((frameCount * 0.01) + (volume));
 
     for (HPoint p : pointArr) {
       stroke(p.col + (frameCount % 250), 150);
@@ -56,8 +86,8 @@ void draw() {
     }
 
   popMatrix();
-
-  if (frameCount % 3 == 0 && frameCount < 181) saveFrame("_###.gif");
+  if (showVisualizer) myAudioDataWidget();
+  // if (frameCount % 3 == 0 && frameCount < 181) saveFrame("_###.gif");
 }
 
 // ************************************************************************************
@@ -71,7 +101,7 @@ class Form {
 
   void update() {
     radNoise += 0.01;
-    radius = 250 + (noise(radNoise) * 20);
+    radius = 250 + (noise(radNoise) * 20) * (bass * 0.02);
   }
 }
 
@@ -100,4 +130,30 @@ class HPoint {
 void keyPressed() {
   if (key == DELETE || key == BACKSPACE) setup();
   if (key == 's' || key == 'S') saveFrame("_##.png");
+}
+
+// ************************************************************************************
+// Audio Data
+
+void myAudioDataUpdate() {
+  for (int i = 0; i < myAudioRange; ++i) {
+    float tempIndexAvg = (myAudioFFT.getAvg(i) * myAudioAmp) * myAudioIndexAmp;
+    float tempIndexCon = constrain(tempIndexAvg, 0, myAudioMax);
+    myAudioData[i]     = tempIndexCon;
+    myAudioIndexAmp   += myAudioIndexStep;
+    // println(myAudioData);
+  }
+  myAudioIndexAmp = myAudioIndex;
+}
+
+void myAudioDataWidget() {
+  noStroke(); fill(0, 200); rect(0, height - 112, width, 102);
+  for (int i = 0; i < myAudioRange; ++i) {
+    fill(#CCCCCC); rect(10 + (i * 15), (height - myAudioData[i]) - 11, 10, myAudioData[i]);
+  }
+}
+
+void stop() {
+  minim.stop();
+  super.stop();
 }
