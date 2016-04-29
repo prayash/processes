@@ -1,26 +1,30 @@
 // Processes - Day 106
 // Prayash Thapa - April 15, 2016
 
-color black = color(34, 34, 34);
-color white = color(238, 238, 238);
-color red = color(225, 76, 69);
-color blue = color(56, 126, 245);
+color black   = color(40, 40, 40);
+color white   = color(228, 238, 238);
+color red     = color(225, 76, 69);
+color blue    = color(56, 126, 245);
 
-int columns = 3, rows = 3; int segment = 125;
-ArrayList <Circle> circles = new ArrayList<Circle>();
+int columns   = 3;
+int rows      = 3;
+int segment   = 125;
+
+ArrayList<Donut> donuts = new ArrayList<Donut>();
 
 // ************************************************************************************
 
 void setup() {
   size(500, 500);
   background(white);
-  stroke(black, 20); noFill();
+  noFill(); stroke(black, 20);
 
+  // Place each donut equally across defined rows & columns
   for (int i = 0; i < rows; i++) {
     for (int j = 0; j < columns; j++) {
       float x = (j + 1) * segment;
       float y = (i + 1) * segment;
-      circles.add(new Circle(x, y));
+      donuts.add(new Donut(x, y));
     }
   }
 }
@@ -28,39 +32,39 @@ void setup() {
 // ************************************************************************************
 
 void draw() {
-  for (Circle c : circles) c.display();
+  for (Donut d : donuts) d.render();
 }
 
 // ************************************************************************************
 
-class Circle {
+class Donut {
 
   float x, y;
-  float a1, a2;
-  float r1, r2;
-  int num; float c;
+  float anguloUno, anguloDos;
+  float radioUno, radioDos;
+  float rando;
 
-  Circle(float _x, float _y) {
+  Donut(float _x, float _y) {
     x = _x; y = _y;
-    a1 = PI/2 + random(PI);
-    a2 = a1 * 2 + random(PI);
-    r1 = segment * 0.1;
-    r2 = segment * 0.4;
-    num = int(map(a2 - a1, a1 + PI, a1, 500, 100));
-    c = random(1);
+    anguloUno = PI/2 + random(PI);
+    anguloDos = anguloUno * 2 + random(PI);
+    radioUno = segment * 0.1;
+    radioDos = segment * 0.4;
+    rando = random(1);
   }
 
-  void display() {
+  void render() {
     pushMatrix();
       translate(x, y);
-      for (int i = 0; i < num; i++) {
-        float angle = random(random(a1, a1 * 2), a2); // take an angle
-        float radius = random(r1, r2); // take radius
+      for (int i = 0; i < 100; i++) {
+        float angle = random(random(anguloUno, anguloUno * 2), anguloDos);
+        float radius = random(radioUno, radioDos);
         float x = radius * cos(angle);
         float y = radius * sin(angle);
 
-        if (c > 0.9) stroke(red, 30);
-        else if (c > 0.5 && c < 0.9) stroke(blue, 30);
+        // Defining our colors using random()
+        if (rando > 0.9) stroke(red, 30);
+        else if (rando > 0.5 && rando < 0.9) stroke(blue, 30);
         else stroke(black, 20);
 
         point(x, y);

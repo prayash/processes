@@ -9,6 +9,12 @@ void setup() {
   size (600, 600); background (#57385C);
   frameRate(24);
   img = loadImage ("asset.jpg");
+
+}
+
+// ************************************************************************************
+
+void draw() {
   int distance = (int) map(mouseX, 0, width, 10, 40);
 
   for (int x = 0; x < img.width; x += 20) {
@@ -22,12 +28,6 @@ void setup() {
       if (random(1) > 0.55) rect(x + distance / 2, y + distance / 2, d, d);
     }
   }
-}
-
-// ************************************************************************************
-
-void draw() {
-  
 }
 
 void keyPressed() {
