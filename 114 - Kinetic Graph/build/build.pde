@@ -14,6 +14,7 @@ float[] velocityY = new float[numVertices];
 void setup() {
   size(500, 200);
   background(#FFFFFF);
+  frameRate(44);
 
   // Init
   for (int i = 0; i < numVertices; i++) {
@@ -88,8 +89,8 @@ void renderNodes() {
     float colorValue = map(nodeRadius[i], 5, 20, 0, 1);
 
     // fillColor & strokeColor interpolate depending on nodeRadius
-    color fillColor = lerpColor(#DC5978, #D92B6A, colorValue);
-    color strokeColor = lerpColor(#DC5978, #FFFFFF, 1 - colorValue);
+    color fillColor = lerpColor(#D92B6A, #DC5978, colorValue);
+    color strokeColor = lerpColor(#D92B6A, #DC5978, 1 - colorValue);
 
     fill(fillColor); stroke(strokeColor);
     ellipse(nodeX[i], nodeY[i], nodeRadius[i], nodeRadius[i]);

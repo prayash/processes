@@ -4,6 +4,7 @@
 color black = color(34, 34, 34);
 color white = color(238, 238, 238);
 color red = color(225, 76, 69);
+color blue = color(56, 126, 245);
 
 int columns = 3, rows = 3; int segment = 125;
 ArrayList <Circle> circles = new ArrayList<Circle>();
@@ -13,8 +14,7 @@ ArrayList <Circle> circles = new ArrayList<Circle>();
 void setup() {
   size(500, 500);
   background(white);
-  noFill();
-  stroke(black, 20);
+  stroke(black, 20); noFill();
 
   for (int i = 0; i < rows; i++) {
     for (int j = 0; j < columns; j++) {
@@ -28,7 +28,7 @@ void setup() {
 // ************************************************************************************
 
 void draw() {
-  if (frameCount < 500) for (Circle c : circles) c.display();
+  for (Circle c : circles) c.display();
 }
 
 // ************************************************************************************
@@ -58,8 +58,11 @@ class Circle {
         float radius = random(r1, r2); // take radius
         float x = radius * cos(angle);
         float y = radius * sin(angle);
-        stroke(black, 20);
+
         if (c > 0.9) stroke(red, 30);
+        else if (c > 0.5 && c < 0.9) stroke(blue, 30);
+        else stroke(black, 20);
+
         point(x, y);
       }
     popMatrix();
