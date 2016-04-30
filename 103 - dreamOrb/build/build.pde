@@ -16,7 +16,7 @@ float         myAudioIndexAmp  = myAudioIndex;
 float         myAudioIndexStep = 0.35;
 float[]       myAudioData      = new float[myAudioRange];
 
-int volume, bass;
+int volume = 0, bass;
 int numPoints     = 300;
 int numForms      = 5;
 float maxNoise    = 5;
@@ -39,7 +39,7 @@ void setup() {
   // Fast Fourier Transform
   myAudioFFT = new FFT(in.bufferSize(), in.sampleRate());
   myAudioFFT.linAverages(myAudioRange);
-  // myAudioFFT.window(FFT.GAUSS);
+  myAudioFFT.window(FFT.GAUSS);
 
   // - Form
   for (int x = 0; x < numForms; x++) formArr = (Form[]) append(formArr, new Form());
@@ -51,14 +51,14 @@ void setup() {
 // ************************************************************************************
 
 void draw() {
-  fill(#EAE8CB, 15); noStroke();
+  fill(#EAE8CB, (2 * volume) + 50); noStroke();
   rect(0, 0, width, height);
 
   // - Audio
   myAudioFFT.forward(in.mix);
   myAudioDataUpdate();
   volume = (int) map((in.mix.level() * 10), 0, 10, 0, 10);
-  bass = (int) map(myAudioData[0] + myAudioData[1], 0, 10, 0, 10);
+  bass = (int) map(myAudioData[0] + myAudioData[1] , 0, 10, 0, 10);
 
   // - Noise
   maxNoise = 5.001;
@@ -74,12 +74,11 @@ void draw() {
     rotateY((frameCount * 0.01) + volume); rotateX((frameCount * 0.01) + (volume));
 
     for (HPoint p : pointArr) {
-      stroke(p.col + (frameCount % 250), 150);
-      stroke(color(56, 126, 245), 15);
       for (HPoint allOtherP : pointArr) {
-        strokeWeight(1);
-        float diff = dist(p.x, p.y, p.z, allOtherP.x, allOtherP.y, allOtherP.z);
-        if (diff < threshold) line(p.x, p.y, p.z, allOtherP.x, allOtherP.y, allOtherP.z);
+        stroke(color(56, 126, 245), 15 + (5 * volume)); strokeWeight(1);
+        float distance = dist(p.x, p.y, p.z, allOtherP.x, allOtherP.y, allOtherP.z);
+        if (distance < threshold) line(p.x, p.y, p.z, allOtherP.x, allOtherP.y, allOtherP.z);
+
         strokeWeight(5);
         if (random(1) > 0.98) point(p.x, p.y, p.z);
       }
@@ -144,6 +143,7 @@ void myAudioDataUpdate() {
     // println(myAudioData);
   }
   myAudioIndexAmp = myAudioIndex;
+  myAudioData[0] *= 0.5;
 }
 
 void myAudioDataWidget() {
