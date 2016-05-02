@@ -34,7 +34,7 @@ void setup() {
   minim = new Minim(this);
   in = minim.getLineIn();
 
-  // Fast Fourier Transform
+  // - Fast Fourier Transform
   fft = new FFT(in.bufferSize(), in.sampleRate());
   fft.linAverages(myAudioRange);
   fft.window(FFT.GAUSS);
@@ -49,7 +49,7 @@ void draw() {
   fill(#EAE8CB, (2 * volume) + 50); noStroke();
   rect(0, 0, width, height);
 
-  // - Audio
+  // - Audio Mapping
   fft.forward(in.mix);
   myAudioDataUpdate();
   volume = (int) map((in.mix.level() * 10), 0, 10, 0, 10);
@@ -79,10 +79,12 @@ class PolyPoint {
     radNoise += 0.1;
     radius = 250 + (noise(radNoise) * 20) * (bass * 0.02);
 
+    // These coordinates define a 3D sphere made with noise
     float x = radius * cos(s) * sin(t);
     float y = radius * sin(s) * sin(t);
     float z = radius * cos(t);
 
+    // Position vector is now all the points of the sphere
     position = new PVector(x, y, z);
   }
 
@@ -93,13 +95,16 @@ class PolyPoint {
       translate(width/2, height/2, 0);
       rotateY((frameCount * 0.01) + volume); rotateX((frameCount * 0.01) + (volume));
 
+      // Compare self to all other points
       for (PolyPoint allP : points) {
         PVector p = allP.position;
         stroke(color(56, 126, 245), 15 + (5 * volume)); strokeWeight(1);
+
+        // Draw edges between vectors only under threshold
         float distance = PVector.dist(position, p);
-        // float distance = dist(position.x, position.y, position.z, allP.position.x, allP.position.y, allP.position.z);
         if (distance < threshold) line(position.x, position.y, position.z, p.x, p.y, p.z);
 
+        // Throw in a few random points
         strokeWeight(5);
         if (random(1) > 0.98) point(position.x, position.y, position.z);
       }
