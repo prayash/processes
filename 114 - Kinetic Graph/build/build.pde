@@ -20,7 +20,7 @@ void draw() {
   noStroke(); fill(color(228, 238, 238), 5);
   rect(0, 0, width, height);
   for (Node n : nodes) n.render();
-  if (frameCount % 6 == 0 && frameCount < 360) saveFrame("_###.png");
+  // if (frameCount % 6 == 0 && frameCount < 360) saveFrame("_###.png");
 }
 
 // ************************************************************************************
