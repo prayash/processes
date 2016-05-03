@@ -22,7 +22,7 @@ int numPoints     = 300;
 int numForms      = 5;
 int threshold     = 80;
 
-ArrayList<PolyPoint> points = new ArrayList<PolyPoint>();
+ArrayList<OrbVertex> points = new ArrayList<OrbVertex>();
 
 // ************************************************************************************
 
@@ -40,13 +40,13 @@ void setup() {
   fft.window(FFT.GAUSS);
 
   // - polyOrb
-  for (int x = 0; x < numPoints; x++) points.add(new PolyPoint());
+  for (int x = 0; x < numPoints; x++) points.add(new OrbVertex());
 }
 
 // ************************************************************************************
 
 void draw() {
-  fill(#EAE8CB, (2 * volume) + 50); noStroke();
+  fill(#EAE8CB, (2 * volume) + 25); noStroke();
   rect(0, 0, width, height);
 
   // - Audio Mapping
@@ -55,7 +55,7 @@ void draw() {
   volume = (int) map((in.mix.level() * 10), 0, 10, 0, 10);
   bass = (int) map(myAudioData[0] + myAudioData[1] , 0, 10, 0, 10);
 
-  for (PolyPoint p : points) p.render();
+  for (OrbVertex p : points) p.render();
 
   if (showVisualizer) myAudioDataWidget();
   // if (frameCount % 3 == 0 && frameCount < 181) saveFrame("_###.gif");
@@ -63,14 +63,14 @@ void draw() {
 
 // ************************************************************************************
 
-class PolyPoint {
+class OrbVertex {
 
   PVector position;
   float radius, radNoise;
   int myForm = (int) random(numForms);
   float s = random(width), t = random(height);
 
-  PolyPoint() {
+  OrbVertex() {
     radNoise = random(10);
     position = new PVector(random(width), random(height), random(height));
   }
@@ -96,9 +96,9 @@ class PolyPoint {
       rotateY((frameCount * 0.01) + volume); rotateX((frameCount * 0.01) + (volume));
 
       // Compare self to all other points
-      for (PolyPoint allP : points) {
+      for (OrbVertex allP : points) {
         PVector p = allP.position;
-        stroke(color(56, 126, 245), 15 + (5 * volume)); strokeWeight(1);
+        stroke(color(56, 126, 245), 35 + (5 * volume)); strokeWeight(1);
 
         // Draw edges between vectors only under threshold
         float distance = PVector.dist(position, p);
