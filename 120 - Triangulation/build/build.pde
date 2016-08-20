@@ -20,7 +20,7 @@ void draw() {
   rect(0, 0, width, height);
 
   for (Particle p : particles) p.render();
-  if (frameCount % 4 == 0) saveFrame("image-####.gif");
+  // if (frameCount % 4 == 0) saveFrame("image-####.gif");
 }
 
 // ************************************************************************************

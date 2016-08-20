@@ -27,7 +27,7 @@ void draw() {
   }
 
   if (smoothFade) {
-    fill(0, 12);
+    fill(255, 12);
     rect(0, 0, width, height);
   }
 }

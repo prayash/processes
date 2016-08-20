@@ -47,7 +47,7 @@ void setup() {
 
 void draw() {
   physics.update();
-  fill(#E4E4E4, 2); rect(0, 0, width, height);
+  fill(#E4E4E4, 35); rect(0, 0, width, height);
   // background(#E4E4E4);
 
   stroke(#008BCA); strokeWeight(4);

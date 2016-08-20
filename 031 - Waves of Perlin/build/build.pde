@@ -16,13 +16,13 @@ void setup() {
 }
 
 // ************************************************************************************
- 
+
 void draw() {
   background(0);
   noStroke();
-  
+
   for (int i = -2; i < div + 6; i++) {
-    fill(320, 60, 60 * (i * (1 / div)));
+    fill(280, 60, 60 * (i * (1 / div)));
     beginShape();
       vertex(-2 * widthDiv, (div * r * 2) + i * heightDiv);
       vertex(-2 * widthDiv, i * heightDiv);
@@ -34,7 +34,7 @@ void draw() {
         float y = (sin(theta) * r) + (i * heightDiv);
         curveVertex(x, y);
       }
-       
+
       vertex((div + 6) * widthDiv, (i * heightDiv));
       vertex((div + 6) * widthDiv, (div * r * 2) + i * heightDiv);
     endShape();
