@@ -1,6 +1,6 @@
 # Processes
 #### 365 days of exploration in Processing by Prayash Thapa (http://effulgence.io).
-> Learning to program is not about acquiring a certain skillset, but is instead a creative and exploratory process.
+> We believe that learning to program is not about acquiring a certain skillset, but is instead a creative and exploratory process.<b> - The Processsing Foundation<b>
 
 #### Tools
 - [Processing (Java)](https://processing.org/)
