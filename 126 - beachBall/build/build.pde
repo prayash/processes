@@ -48,3 +48,7 @@ void draw() {
     endShape();
   }
 }
+
+void keyPressed() {
+  if (key == 's') saveFrame("##.png");
+}

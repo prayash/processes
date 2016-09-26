@@ -14,4 +14,4 @@
 - [Fun Programming](http://funprogramming.org/)
 - [OpenProcessing](http://openprocessing.org)
 
-###### Please feel free to download, mangle, mix, mash, and modify these scripts. Share if you make something cool (PRs always welcome)! I've learned a lot from the Processing community and collaborative learning is the best, so I'm happy to provide something from my learning journey and keep the cycle going!
+###### Please feel free to download, mangle, mix, mash, and modify these scripts. If you end up make something cool, share it! I've learned a lot from the Processing community and collaborative learning is the best, so I'm happy to give back something from my own learning journey to keep the cycle going!
