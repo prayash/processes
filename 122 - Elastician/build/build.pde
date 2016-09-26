@@ -6,24 +6,24 @@ import processing.opengl.*;
 boolean smoothFade;
 int amount = 30, lineAlpha = 50;
 
-Elastic eL_1 = new Elastic(amount, 0.25, 0.65);
-Elastic eL_2 = new Elastic(amount, 0.1, 0.65);
-Elastic eL_3 = new Elastic(amount + 1, 0.3, 0.65);
+Elastic primary = new Elastic(amount, 0.25, 0.65);
+Elastic secondary = new Elastic(amount, 0.1, 0.65);
 
 // ************************************************************************************
 
-void setup()  {
+void setup() {
   size(900, 450);
   frameRate(240);
-  background(228, 238, 228); noFill();
+  background(228, 238, 228);
+  noFill();
 }
 
 // ************************************************************************************
 
 void draw() {
   if (mousePressed == true)  {
-    eL_1.render(255, 0, 0, lineAlpha);
-    eL_2.render(56, 126, 245, lineAlpha);
+    primary.render(255, 0, 0, lineAlpha);
+    secondary.render(56, 126, 245, lineAlpha);
   }
 
   if (smoothFade) {
@@ -36,6 +36,7 @@ void draw() {
 
 class Elastic {
   int amount = 1000, colorR, colorG, colorB;
+  ArrayList<PVector> pos = new ArrayList();
 
   float[] x = new float[amount];
   float[] y = new float[amount];
@@ -43,8 +44,8 @@ class Elastic {
   float[] accelerationY = new float[amount];
   float[] elasticity = new float[amount];
   float[] ease = new float[amount];
-  float[] deltaX = new float[amount];
-  float[] deltaY = new float[amount];
+  float[] dX = new float[amount];
+  float[] dY = new float[amount];
 
   float pointX, pointY;
 
@@ -63,19 +64,19 @@ class Elastic {
 
     for (int i = 0; i < amount; i++){
       if (i == 0) {
-        deltaX[i] = (pointX - x[i]);
-        deltaY[i] = (pointY - y[i]);
+        dX[i] = (pointX - x[i]);
+        dY[i] = (pointY - y[i]);
       } else {
-        deltaX[i] = (x[i-1]-x[i]);
-        deltaY[i] = (y[i-1]-y[i]);
+        dX[i] = (x[i-1]-x[i]);
+        dY[i] = (y[i-1]-y[i]);
       }
-      deltaX[i] *= elasticity[i];    // create elasticity effect
-      deltaY[i] *= elasticity[i];
-      accelerationX[i] += deltaX[i];
-      accelerationY[i] += deltaY[i];
-      x[i] += accelerationX[i];       // move it
+      dX[i] *= elasticity[i];
+      dY[i] *= elasticity[i];
+      accelerationX[i] += dX[i];
+      accelerationY[i] += dY[i];
+      x[i] += accelerationX[i];
       y[i] += accelerationY[i];
-      accelerationX[i] *= ease[i];    // slow down elasticity
+      accelerationX[i] *= ease[i];
       accelerationY[i] *= ease[i];
     }
   }
@@ -90,9 +91,11 @@ class Elastic {
   void render(int colorR, int colorG, int colorB, int lineAlpha)  {
     calcPoints(mouseX, mouseY);
 
-    stroke(colorR, colorG, colorB, lineAlpha); noFill();
+    stroke(colorR, colorG, colorB, lineAlpha);
+    noFill();
+
     beginShape();
-      for (int i = 0; i < amount; i++) { curveVertex(x[i], y[i]); }
+    for (int i = 0; i < amount; i++) { curveVertex(x[i], y[i]); }
     endShape();
   }
 }
@@ -100,9 +103,8 @@ class Elastic {
 // ************************************************************************************
 
 void mousePressed()  {
-  eL_1.calcPointsStart();
-  eL_2.calcPointsStart();
-  // eL_3.calcPointsStart();
+  primary.calcPointsStart();
+  secondary.calcPointsStart();
 }
 
 void keyPressed() {

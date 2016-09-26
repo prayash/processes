@@ -1,22 +1,16 @@
 // Processes - Day 124
 // Prayash Thapa - May 3, 2016
 
-import peasy.*;
-
-PeasyCam cam;
-
 int cols, rows;
 int scale = 20;
-int w = 2200, h = 1500;
-float [][] terrain;
+int w = 1200, h = 900;
+float[][] terrain;
 float flight = 0;
 
 // ************************************************************************************
 
 void setup() {
-  fullScreen(P3D);
-  // size(400, 600, P3D);
-  cam = new PeasyCam(this, 2000);
+  size(400, 600, P3D);
   cols = w / scale;
   rows = h / scale;
   terrain = new float[cols][rows];
@@ -30,10 +24,10 @@ void draw() {
   for (int y = 0; y < rows; y++) {
     float xOff = 0;
     for (int x = 0; x < cols; x++) {
-      terrain[x][y] =  map(random(xOff, yOff), 0, 1, -150, 150);
-      xOff += 0.2;
+      terrain[x][y] =  map(noise(xOff, yOff), 0, 1, -150, 150);
+      xOff += 0.1;
     }
-    yOff += 0.2;
+    yOff += 0.1;
   }
 
   background(40, 40, 40);
@@ -52,8 +46,4 @@ void draw() {
   }
 
   // if (frameCount % 8 == 0) saveFrame("####.png");
-}
-
-void keyPressed() {
-  if (key == 's') saveFrame("###.png");
 }
