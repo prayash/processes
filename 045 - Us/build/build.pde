@@ -28,28 +28,20 @@ void setup() {
 	H.add(hitObj5).anchorAt(H.CENTER).locAt(H.CENTER).visibility(true);
 
 	colors = new HColorPool()
-		.add(#ae2569, 8) //dark pink
-		.add(#f7bfdc, 9) //Blossom
-		.add(#fce8f3,2) // light pink
-		.add(#f1cd81) //yellow
-		.add(#91c5fb) //blue
-		.add(#e0e0e0,3) //grey
+		.add(#ae2569, 8)
+		.add(#f7bfdc, 9)
+		.add(#fce8f3,2)
+		.add(#f1cd81)
+		.add(#91c5fb)
+		.add(#e0e0e0, 3)
 	;
 
 	colors2 = new HColorPool()
 		.add(#f1cd81)
-		.add(#e0e0e0) //grey
+		.add(#e0e0e0)
 		.fillOnly()
 	;
 
-	drawThings();
-}
-
-void draw() {
-  // drawThings();
-}
-
-void drawThings() {
 	H.clearStage();
 
 	heartPool = new HDrawablePool(100); // Colorful flowers
@@ -116,16 +108,16 @@ void drawThings() {
   H.drawStage();
 }
 
+void draw() { }
+
 // ************************************************************************************
 
 void keyPressed() {
-	if (key == ']') drawThings();
 	if (key == 's' || key == 'S') {
 		record = true;
 		saveVector();
 	}
 }
-
 
 void saveVector() {
 	PGraphics tmp = null;
