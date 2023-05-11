@@ -12,7 +12,7 @@ color[] palette = {#febd45, #e12b64, #569dc7, #D882AE, #E2D0D8, #E9D8DE, #E0DDE2
 void setup() {
 	size(700, 700, P2D);
 	background(#292f33);
-	fill(#FFFFFF);	
+	fill(#FFFFFF);
 
 	for (int i = 0; i < width; i += 15) {
 		stroke(255, 50);
@@ -38,7 +38,7 @@ void setup() {
 		int randWidth = (int)random(width);
 		int randHeight = (int)random(height);
 		ellipse(randWidth, randHeight, randRadius, randRadius);
-		
+
 		beginShape();
 			strokeWeight(2);
 			stroke(#FFFFFF, 155);
@@ -47,7 +47,7 @@ void setup() {
 
 		ellipse(randWidth, randHeight, 10, 10);
 	}
-	
+
 }
 
 // ************************************************************************************

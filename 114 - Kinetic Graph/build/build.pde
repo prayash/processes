@@ -18,7 +18,8 @@ void setup() {
 
 void draw() {
   noStroke(); fill(color(228, 238, 238), 5);
-  rect(0, 0, width, height);
+  background(#FFFFFF);
+  // rect(0, 0, width, height);
   for (Node n : nodes) n.render();
   // if (frameCount % 6 == 0 && frameCount < 360) saveFrame("_###.png");
 }
@@ -77,7 +78,7 @@ class Node {
     color strokeColor = lerpColor(#D92B6A, #DC5978, 1 - colorValue);
 
     fill(fillColor); stroke(strokeColor);
-    if (random(1) > 0.98) ellipse(position.x, position.y, radius, radius);
+    // if (random(1) > 0.98) ellipse(position.x, position.y, radius, radius);
   }
 }
 

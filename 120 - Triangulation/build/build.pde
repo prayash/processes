@@ -10,13 +10,15 @@ ArrayList<Particle> particles = new ArrayList();
 
 void setup() {
   size(800, 600);
-  for (int i = 0; i < 100; i++) particles.add(new Particle());
+  for (int i = 0; i < 100; i++) {
+    particles.add(new Particle());
+  }
 }
 
 // ************************************************************************************
 
 void draw() {
-  noStroke(); fill(#EEEEEE, 80);
+  noStroke(); fill(#DC5978, 255);
   rect(0, 0, width, height);
 
   for (Particle p : particles) p.render();
@@ -46,7 +48,7 @@ class Particle {
   }
 
   void display() {
-    fill(#202020, opacity * 4);
+    fill(#EBEBEB, opacity * 4);
     ellipse(position.x, position.y, radius, radius);
 
     for (int i = 1; i < particles.size() - 1; i++) {
@@ -58,7 +60,7 @@ class Particle {
       // Only draw if certain distance between nodes
       if (dist > 20 && dist < 100) {
         float t = (opacity + p2.opacity) / 1.5;
-        stroke(#202020, t); strokeWeight(1);
+        stroke(#EBEBEB, t); strokeWeight(1);
         line(position.x, position.y, p2.position.x, p2.position.y);
       }
 
@@ -69,7 +71,7 @@ class Particle {
         // Triangulation
         if (dist <= 80 && distance(p2.position, p3.position) <= 80 && distance(p3.position, position) <= 80) {
           float t = (opacity + p2.opacity + p3.opacity) / 4;
-          noStroke(); fill(#202020, t);
+          noStroke(); fill(#EBEBEB, t);
           triangle(position.x, position.y, p2.position.x, p2.position.y, p3.position.x, p3.position.y);
         }
       }

@@ -10,7 +10,7 @@ float flight = 0;
 // ************************************************************************************
 
 void setup() {
-  size(400, 600, P3D);
+  size(1200, 900, P3D);
   cols = w / scale;
   rows = h / scale;
   terrain = new float[cols][rows];

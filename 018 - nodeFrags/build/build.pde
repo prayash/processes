@@ -7,7 +7,7 @@ float theta;
 color[] palette = { #A0ECD0, #ECD893, #E7AF7E, #B78376 };
 
 // ************************************************************************************
- 
+
 void setup() {
   size(800, 400);
   for (int i = 0; i < num; i++) {
@@ -30,7 +30,7 @@ void draw() {
     // Yellows and Reds
     fill(12.5 * sin((colorCounter * 0.025 ) / 100.0) + 12.5, 1, 1);
     vertex(-width, -height);
-    
+
     // Yellows and Whites
     fill(12.5 * cos((colorCounter * 0.025 ) / 200.0) + 37.5, 1, 1);
     vertex(width, -height);
@@ -38,7 +38,7 @@ void draw() {
     // Blues and Greens
     fill(12.5 * cos((colorCounter * 0.025 ) / 100.0) + 62.5, 1, 1);
     vertex(width, height);
-    
+
     // Reds + Purples
     fill(12.5 * sin((colorCounter * 0.25 ) / 200.0) + 87.5, 1, 1);
     vertex(-width, height);
@@ -58,7 +58,7 @@ void draw() {
 class Orb {
   float x, y, size, px, py, offSet, radius;
   int dir; color col;
- 
+
   Orb(float _x, float _y, float _size) {
     x = _x;
     y = _y;
@@ -68,19 +68,19 @@ class Orb {
     dir = random(1) > .5 ? 1 : -1;
     col = palette[int(random(palette.length))];
   }
- 
+
   void run() {
     update();
     showLines();
     display();
   }
- 
+
   void update() {
     float vari = map(sin(theta), -1, 1, 1, 2);
     px = x + cos(theta * dir + offSet) * radius * vari;
     py = y + sin(theta * dir) * radius * vari;
   }
- 
+
   void showLines() {
     for (int i = 0; i < orbs.length; i++) {
       float distance = dist(px, py, orbs[i].px, orbs[i].py);

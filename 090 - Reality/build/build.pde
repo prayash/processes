@@ -17,10 +17,10 @@ int posX, posY;
 // ************************************************************************************
 
 void setup() {
-  size(500, 500);
+  size(700, 500);
   frameRate(15);
 
-  font = createFont("Oswald", 15);
+  font = createFont("Roboto Mono", 15);
   String[] lines = loadStrings("data.txt");
   joinedText = join(lines, " ");
 
@@ -40,7 +40,6 @@ void draw() {
   posY = 80;
 
   for (int i = 0; i < joinedText.length(); i++) {
-
     String s = str(joinedText.charAt(i)).toUpperCase();
     char uppercaseChar = s.charAt(0);
     int index = alphabet.indexOf(uppercaseChar);

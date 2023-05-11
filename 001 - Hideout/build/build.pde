@@ -42,8 +42,8 @@ void setup() {
 		;
 		d.randomColors( colors.fillOnly() );
 		H.add(d);
-	}	
-	
+	}
+
 	for (int i = 0; i < 18; i++){
 		d = new HShape("tres.svg");
 		d
@@ -55,7 +55,7 @@ void setup() {
 		;
 		d.randomColors( colors.fillOnly() );
 		H.add(d);
-	}	
+	}
 
 
 	for (int i = 0; i < 18; i++){
@@ -69,7 +69,7 @@ void setup() {
 		;
 		d.randomColors( colors.fillOnly() );
 		H.add(d);
-	}	
+	}
 
 
 	for (int i = 0; i < 18; i++){
@@ -83,7 +83,7 @@ void setup() {
 		;
 		d.randomColors( colors.fillOnly() );
 		H.add(d);
-	}	
+	}
 
 
 	for (int i = 0; i < 14; i++) {

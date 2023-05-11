@@ -31,7 +31,7 @@ void setup() {
 
 void draw() {
   noStroke();
-  fill(20, 80);
+  fill(20, 25);
   rect(width/2, height/2, width, height);
   translate(width/2, height/2);
   for (int i = 0; i < cArr.length; i++) {
@@ -44,8 +44,8 @@ void draw() {
   }
 
   theta += 0.0523;
-  filter(DILATE);
-  if (save) if (frameCount % 4 == 0 && frameCount < f + 121) saveFrame("image-###.gif");
+  // filter(DILATE);
+  // if (save) if (frameCount % 4 == 0 && frameCount < f + 121) saveFrame("image-###.gif");
 }
 
 // ************************************************************************************

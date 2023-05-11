@@ -9,7 +9,7 @@ color c2 = #9ab6cb;
 
 float fragWidth = 75;
 float fragHeight = 75;
- 
+
 float [][] pointX = new float [M][N];
 float [][] pointY = new float [M][N];
 color [][] fragColor = new color [M][N];
@@ -42,7 +42,7 @@ void generate() {
     for (int j = 0; j < N; j++) {
       pointX[i][j] = (i - random(1) - 0.5 * (M - 2)) * fragWidth;
       pointY[i][j] = (j - random(1) - 0.5 * (N - 2)) * fragHeight;
-      
+
       float f = round(random(5)) / 5.0;
       fragColor[i][j] = lerpColor(c1, c2, f);
     }

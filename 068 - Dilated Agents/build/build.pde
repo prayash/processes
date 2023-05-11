@@ -42,7 +42,7 @@ void setup() {
 // ************************************************************************************
 
 void draw() {
-  for (int i = 0; i <= mouseX; i++) {
+  for (int i = 0; i <= (mouseX / 5); i++) {
     counter++;
 
     if (drawMode == 2) direction = round(random(0, 3));
@@ -107,9 +107,9 @@ void keyReleased() {
     diameter = 5;
   }
 
-  if (key == 'B') filter(BLUR, 1);
-  if (key == 'E') filter(ERODE);
-  if (key == 'D') filter(DILATE);
+  if (key == 'b') filter(BLUR, 1);
+  if (key == 'e') filter(ERODE);
+  if (key == 'd') filter(DILATE);
 
   // * PDF Export - R to Start -> E to Stop
   if (key =='r') {

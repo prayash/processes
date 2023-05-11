@@ -3,7 +3,7 @@
 
 // ************************************************************************************
 
-int num = 150;
+int num = 15;
 Orbit[] oArr   = new Orbit[num];
 
 void setup() {
@@ -54,7 +54,7 @@ class Orbit {
 
     // Orbiting
     if (lastX != 9999) {
-      strokeWeight(1);
+      strokeWeight(4);
       stroke(strokeCol, random(20) + 50);
       line(x, y, lastX, lastY);
       // This could be so fucking cool if I mapped the lines to stray off-path according to audio!
@@ -62,7 +62,7 @@ class Orbit {
 
       // Texturing
       if (random(5) > 4) {
-        strokeWeight(1);
+        strokeWeight(2);
         stroke(strokeCol, 1);
         line(x, y, random(width), random(height));
       }
